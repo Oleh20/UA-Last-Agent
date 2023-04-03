@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime;
@@ -7,61 +7,75 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI DialogText;
-    [SerializeField] private TextMeshProUGUI NameText;
-    [SerializeField] private Image HeadImage;
-    [SerializeField] private Queue <string> sentences;
-    [SerializeField] private Queue <string> _name;
-    [SerializeField] private Queue <Sprite> _head;
-    [SerializeField] private GameObject dialogWindow;
+    [SerializeField] private TextMeshProUGUI dialogText;
+    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private Image headImage;
+    private Queue<string> sentences;
+    private Queue<string> names;
+    private Queue<Sprite> heads;
+
+    private GameObject dialogWindow;
+
     // Start is called before the first frame update
     void Start()
     {
-        sentences = new Queue <string> ();
-        _name = new Queue <string> ();
-        _head = new Queue <Sprite> ();
+        sentences = new Queue<string>();
+        names = new Queue<string>();
+        heads = new Queue<Sprite>();
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    // void Update()
+    // {
+    // }
 
-    }
     public void StartDialogue(Dialog dialog)
     {
-        sentences.Clear();
-        _name.Clear();
-        _head.Clear();
+        dialogWindow = GameObject.Find("Canvas");
 
-        foreach (string name in dialog._name)
+        // очистимо черги перед початком нового діалогу
+        sentences.Clear();
+        names.Clear();
+        heads.Clear();
+
+        // додамо всі речення, імена та голови відповідно до їх порядку в Dialog
+        for (int i = 0; i < dialog.sentences.Length; i++)
         {
-            _name.Enqueue(name);
+            sentences.Enqueue(dialog.sentences[i]);
+            names.Enqueue(dialog.names[i]);
+            heads.Enqueue(dialog.heads[i]);
         }
-        foreach (Sprite headSprite in dialog.head)
-        {
-            _head.Enqueue(headSprite);
-        }
-        foreach (string sentence in dialog.sentences)
-        {
-            sentences.Enqueue(sentence);
-        }
-        DisplayNextSentaces();
+
+        DisplayNextSentences();
     }
-    public void DisplayNextSentaces()
+
+    public void DisplayNextSentences()
     {
+        // перевіряємо, чи закінчилися речення
+        if (sentences.Count == 0)
+        {
+            EndDialogue();
+            return;
+        }
+
+        // беремо наступне речення, ім'я та голову
         string sentence = sentences.Dequeue();
-        string name = _name.Dequeue();
-        Sprite head = _head.Dequeue();
-        StartCoroutine(TypeSentences(sentence, name,head));
+        string name = names.Dequeue();
+        Sprite head = heads.Dequeue();
+
+        // запускаємо корутину з виведенням речення посимвольно
+        StartCoroutine(TypeSentence(sentence, name, head));
     }
-    IEnumerator TypeSentences(string sentence, string name, Sprite head)
+
+    IEnumerator TypeSentence(string sentence, string name, Sprite head)
     {
-        DialogText.text = "";
-        NameText.text = name;
-        HeadImage.sprite = head;
-        foreach(char letter in sentence.ToCharArray())
+        dialogText.text = "";
+        nameText.text = name;
+        headImage.sprite = head;
+
+        foreach (char letter in sentence.ToCharArray())
         {
-            DialogText.text += letter;
+            dialogText.text += letter;
             yield return null;
         }
     }

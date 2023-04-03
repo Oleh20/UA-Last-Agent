@@ -5,21 +5,32 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour
 {
     [SerializeField] private Dialog dialog;
-    [SerializeField] private GameObject dialogWindow;
-    // Start is called before the first frame update
+    private GameObject dialogWindow;
+
     private void Start()
     {
+        dialogWindow = GameObject.Find("Canvas");
+        checkDialog(dialogWindow);
         dialogWindow.SetActive(false);
     }
+
     private void TriggerDialogue()
     {
-        
-        FindObjectOfType<DialogueManager>().StartDialogue(dialog);
         dialogWindow.SetActive(true);
+        FindObjectOfType<DialogueManager>().StartDialogue(dialog);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         TriggerDialogue();
+    }
+
+    private void checkDialog(GameObject dialgoWindow)
+    {
+        if (dialgoWindow == null)
+        {
+            Debug.LogError("Dialog window not found!");
+            return;
+        }
     }
 }
