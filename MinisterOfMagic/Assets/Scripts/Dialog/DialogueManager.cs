@@ -24,15 +24,9 @@ public class DialogueManager : MonoBehaviour
         heads = new Queue<Sprite>();
     }
 
-    // Update is called once per frame
-    // void Update()
-    // {
-    // }
-
     public void StartDialogue(Dialog dialog)
     {
-        dialogWindow = GameObject.Find("Canvas");
-
+        dialogWindow = GameObject.Find("Dialog");
         // очистимо черги перед початком нового діалогу
         sentences.Clear();
         names.Clear();
@@ -84,4 +78,5 @@ public class DialogueManager : MonoBehaviour
     {
         dialogWindow.SetActive(false);
     }
+
 }

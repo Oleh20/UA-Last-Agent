@@ -5,19 +5,20 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour
 {
     [SerializeField] private Dialog dialog;
-    private GameObject dialogWindow;
+    [SerializeField] private Dialog alternativeDialog;
+    [SerializeField] private GameObject dialogWindow;
+    [SerializeField] private bool condition = false;
 
     private void Start()
     {
-        dialogWindow = GameObject.Find("Canvas");
-        checkDialog(dialogWindow);
         dialogWindow.SetActive(false);
     }
 
     private void TriggerDialogue()
     {
+        Dialog choosen = condition ? alternativeDialog : dialog;
         dialogWindow.SetActive(true);
-        FindObjectOfType<DialogueManager>().StartDialogue(dialog);
+        FindObjectOfType<DialogueManager>().StartDialogue(choosen);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -25,12 +26,8 @@ public class DialogueTrigger : MonoBehaviour
         TriggerDialogue();
     }
 
-    private void checkDialog(GameObject dialgoWindow)
+    private bool CheckOfCondition()
     {
-        if (dialgoWindow == null)
-        {
-            Debug.LogError("Dialog window not found!");
-            return;
-        }
+        return condition;   
     }
 }
