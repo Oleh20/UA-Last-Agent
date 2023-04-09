@@ -6,11 +6,12 @@ public class ItemTake : MonoBehaviour
 {
     [SerializeField] Item itemToAdd;
     [SerializeField] Inventory targetInventory;
-    void Update()
+    private void Update()
     {
-        if(Input.GetKeyUp(KeyCode.E))
-        {
+  
+    }
+    public void TakeItem()
+    {
             targetInventory.AddItem(itemToAdd);
-        }
     }
 }

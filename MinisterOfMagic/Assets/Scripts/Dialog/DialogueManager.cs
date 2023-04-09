@@ -16,6 +16,12 @@ public class DialogueManager : MonoBehaviour
 
     private GameObject dialogWindow;
 
+    private System.Action dialogueCallback;
+    private System.Action nextSceneCallback;
+
+    private Coroutine typingCoroutine;
+
+    private string currentSentence;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +30,7 @@ public class DialogueManager : MonoBehaviour
         heads = new Queue<Sprite>();
     }
 
-    public void StartDialogue(Dialog dialog)
+    public void StartDialogue(Dialog dialog, System.Action callback = null, System.Action nextScene = null)
     {
         dialogWindow = GameObject.Find("Dialog");
         // очистимо черги перед початком нового діалогу
@@ -41,10 +47,21 @@ public class DialogueManager : MonoBehaviour
         }
 
         DisplayNextSentences();
+        dialogueCallback = callback;
+        nextSceneCallback = nextScene;
     }
 
     public void DisplayNextSentences()
     {
+        // зупиняємо попередню корутину, якщо вона існує
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+            dialogText.text = currentSentence;
+            typingCoroutine = null;
+            return;
+        }
+
         // перевіряємо, чи закінчилися речення
         if (sentences.Count == 0)
         {
@@ -58,11 +75,12 @@ public class DialogueManager : MonoBehaviour
         Sprite head = heads.Dequeue();
 
         // запускаємо корутину з виведенням речення посимвольно
-        StartCoroutine(TypeSentence(sentence, name, head));
+        typingCoroutine =  StartCoroutine(TypeSentence(sentence, name, head));
     }
 
     IEnumerator TypeSentence(string sentence, string name, Sprite head)
     {
+        currentSentence = sentence;
         dialogText.text = "";
         nameText.text = name;
         headImage.sprite = head;
@@ -72,11 +90,14 @@ public class DialogueManager : MonoBehaviour
             dialogText.text += letter;
             yield return null;
         }
+        typingCoroutine = null;
     }
 
     private void EndDialogue()
     {
         dialogWindow.SetActive(false);
+        if (dialogueCallback != null) dialogueCallback();
+        if (nextSceneCallback != null) nextSceneCallback();
     }
 
 }

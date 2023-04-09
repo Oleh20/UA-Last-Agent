@@ -337,7 +337,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 351709475}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2799993, y: -3.8699996, z: -10}
+  m_LocalPosition: {x: -0.27999952, y: -3.8699996, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1883,7 +1883,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1154139261}
   - component: {fileID: 1154139260}
-  - component: {fileID: 1154139259}
   m_Layer: 0
   m_Name: Goal
   m_TagString: Untagged
@@ -1891,28 +1890,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1154139259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1154139258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adb6fca3918e43340be81ad1e6b1a66d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialog:
-    names:
-    - "\u0444\u0430\u0444\u0432\u0430\u0444\u0432\u0430"
-    - "3\u0444\u0432\u0430\u0444\u0432\u0430"
-    heads:
-    - {fileID: 21300000, guid: 76beef9fdae7b48468ddf07d0400a374, type: 3}
-    - {fileID: 21300000, guid: e60718119cec31e4190849292fcde068, type: 3}
-    sentences:
-    - sf\gds\gfs\gfds\gf
-    - gfgsf\gdfgsd\gfsd\gfadfafasdf
 --- !u!61 &1154139260
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17879,7 +17856,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743178033}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2799993, y: -3.8699996, z: -10}
+  m_LocalPosition: {x: -0.27999952, y: -3.8699996, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17901,7 +17878,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1882565609
 Transform:
   m_ObjectHideFlags: 0
