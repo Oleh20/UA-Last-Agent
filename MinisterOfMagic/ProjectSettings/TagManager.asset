@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Canvas
+  - Dialog
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -30,7 +33,7 @@ TagManager:
   - Layer 3
   - 
   - 
-  - 
+  - CamConfiner
   - 
   - 
   - 
