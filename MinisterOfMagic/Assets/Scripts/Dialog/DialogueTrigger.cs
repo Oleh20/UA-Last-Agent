@@ -34,10 +34,18 @@ public class DialogueTrigger : MonoBehaviour
         FindObjectOfType<DialogueManager>().StartDialogue(choosen, needToGiveSomething, LoadNextScene);
        
     }
+    private void DialogExit()
+    {
+        dialogWindow.SetActive(false);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         TriggerDialogue();
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        DialogExit();
     }
     private void needToGiveSomething()
     {
