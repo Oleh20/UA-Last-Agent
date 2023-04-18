@@ -1,18 +1,27 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Inventory inventory;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] private Item itemForThrow;
+
+    private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (inventory.InventoryItems.Contains(itemForThrow))
+            {
+                inventory.RemoveItem(itemForThrow);
+
+                Debug.Log("Ви викинули ключ.");
+            }
+            else
+            {
+                Debug.Log("У вас немає ключа в інвентарі.");
+            }
+        }
     }
 }

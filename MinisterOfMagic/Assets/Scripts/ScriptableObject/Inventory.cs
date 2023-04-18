@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
@@ -25,5 +26,10 @@ public class Inventory : MonoBehaviour
     public bool HasItem(Item item)
     {
         return InventoryItems.Contains(item);
+    }
+
+    public void RemoveItem(Item item)
+    {
+        InventoryItems.Remove(item);
     }
 }
