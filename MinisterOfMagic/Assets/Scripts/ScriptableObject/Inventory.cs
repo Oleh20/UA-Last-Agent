@@ -30,7 +30,7 @@ public class Inventory : MonoBehaviour
 
     public void RemoveItem(Item item)
     {
-        item.IsInInventory = false;
         InventoryItems.Remove(item);
+        OnItemAdded?.Invoke(item);
     }
 }
