@@ -26,7 +26,7 @@ public class DogGFX : MonoBehaviour
             dir.x = 1;
             animator.SetInteger("Direction", 2);
         }
-        Debug.Log(aIPath.desiredVelocity.y);
+ 
         if (aIPath.desiredVelocity.y >= changeDirectionForce)
         {
             dir.y = 1;
