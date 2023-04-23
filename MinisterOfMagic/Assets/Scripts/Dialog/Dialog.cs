@@ -8,10 +8,4 @@ public class Dialog
     public Sprite[] heads;
     [TextArea(3, 10)] public string[] sentences;
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

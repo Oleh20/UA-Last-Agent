@@ -18,6 +18,7 @@ public class DialogueManager : MonoBehaviour
 
     private System.Action dialogueCallback;
     private System.Action nextSceneCallback;
+    private System.Action nextTimeLineCallback;
 
     private Coroutine typingCoroutine;
 
@@ -30,7 +31,7 @@ public class DialogueManager : MonoBehaviour
         heads = new Queue<Sprite>();
     }
 
-    public void StartDialogue(Dialog dialog, System.Action callback = null, System.Action nextScene = null)
+    public void StartDialogue(Dialog dialog, System.Action callback = null, System.Action nextScene = null, System.Action nextTimeLine = null)
     {
         dialogWindow = GameObject.Find("Dialog");
         // очистимо черги перед початком нового діалогу
@@ -49,6 +50,7 @@ public class DialogueManager : MonoBehaviour
         DisplayNextSentences();
         dialogueCallback = callback;
         nextSceneCallback = nextScene;
+        nextTimeLineCallback = nextTimeLine;
     }
 
     public void DisplayNextSentences()
@@ -98,6 +100,7 @@ public class DialogueManager : MonoBehaviour
         dialogWindow.SetActive(false);
         if (dialogueCallback != null) dialogueCallback();
         if (nextSceneCallback != null) nextSceneCallback();
+        if (nextTimeLineCallback != null) nextTimeLineCallback();
     }
 
 }
