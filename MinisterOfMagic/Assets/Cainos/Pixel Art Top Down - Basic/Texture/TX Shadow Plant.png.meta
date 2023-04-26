@@ -249,31 +249,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-  - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -487,15 +463,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      TX Shadow Tree T1: 21300080
-      TX Shadow Bush T2: 21300090
-      TX Shadow Tree T2: 21300082
-      TX Shadow Bush T5: 21300088
       TX Shadow Bush T1: 21300086
-      TX Shadow Tree T3: 21300030
-      TX Shadow Bush T4: 21300092
+      TX Shadow Bush T2: 21300090
       TX Shadow Bush T3: 21300094
+      TX Shadow Bush T4: 21300092
+      TX Shadow Bush T5: 21300088
       TX Shadow Bush T6: 21300040
+      TX Shadow Tree T1: 21300080
+      TX Shadow Tree T2: 21300082
+      TX Shadow Tree T3: 21300030
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
