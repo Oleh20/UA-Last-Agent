@@ -10,6 +10,9 @@ namespace Cainos.PixelArtTopDown_Basic
 
         private Animator animator;
 
+        public int horizontal = 0;
+        public int vertical = 0;
+
         private void Start()
         {
             animator = GetComponent<Animator>();
@@ -21,22 +24,30 @@ namespace Cainos.PixelArtTopDown_Basic
             Vector2 dir = Vector2.zero;
             if (Input.GetKey(KeyCode.A))
             {
+                horizontal = -1;
+                vertical = 0;
                 dir.x = -1;
                 animator.SetInteger("Direction", 3);
             }
             else if (Input.GetKey(KeyCode.D))
             {
+                horizontal = 1;
+                vertical = 0;
                 dir.x = 1;
                 animator.SetInteger("Direction", 2);
             }
 
             if (Input.GetKey(KeyCode.W))
             {
+                vertical = 1;
+                horizontal = 0;
                 dir.y = 1;
                 animator.SetInteger("Direction", 1);
             }
             else if (Input.GetKey(KeyCode.S))
             {
+                vertical = -1;
+                horizontal = 0;
                 dir.y = -1;
                 animator.SetInteger("Direction", 0);
             }
