@@ -1,6 +1,7 @@
 ﻿using Cainos.PixelArtTopDown_Basic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
    
     [SerializeField] private TopDownCharacterController topDownCharacterController;
     [SerializeField] private TextMeshProUGUI currentColliderText;
+
 
     private void Start()
     {
