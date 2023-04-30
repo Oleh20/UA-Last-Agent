@@ -1,5 +1,7 @@
 ﻿using Cainos.PixelArtTopDown_Basic;
 using UnityEngine;
+using TMPro;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,10 +14,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject itemApperOnMap;
    
     [SerializeField] private TopDownCharacterController topDownCharacterController;
+    [SerializeField] private TextMeshProUGUI currentColliderText;
+
 
     private void Start()
     {
-        itemApperOnMap.SetActive(false);
+     
     }
     private void Update()
     {
@@ -36,5 +40,9 @@ public class PlayerController : MonoBehaviour
                 changeGoal.changeGoal();
             }
         }
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        currentColliderText.text = other.name;
     }
 }
