@@ -10,7 +10,9 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] private Dialog alternativeDialog;
     [SerializeField] private GameObject dialogWindow;
     [SerializeField] private bool giveSomething = false;
-    [SerializeField] private Inventory inventoryUser;
+
+    private Inventory inventoryUser;
+
     [SerializeField] private Item itemToAdd;
 
     [SerializeField] private Condition conditionToCheck;
@@ -24,6 +26,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Start()
     {
+        inventoryUser = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         dialogWindow.SetActive(false);
     }
     

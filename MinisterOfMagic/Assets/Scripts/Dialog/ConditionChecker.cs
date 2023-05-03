@@ -6,9 +6,13 @@ public class ConditionChecker : MonoBehaviour
 {
     [SerializeField] private bool condition = false;
     [SerializeField] private bool giveSomething = false;
-    [SerializeField] private Inventory inventoryUser;
     [SerializeField] private Item itemToAdd;
+    private Inventory inventoryUser;
 
+    private void Start()
+    {
+        inventoryUser = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+    }
     public void CheckCondition()
     {
         if (condition && giveSomething)

@@ -12,14 +12,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float throwForce = 0;
     [SerializeField] private Item itemForThrow;
     [SerializeField] private GameObject itemApperOnMap;
-   
+
     [SerializeField] private TopDownCharacterController topDownCharacterController;
     [SerializeField] private TextMeshProUGUI currentColliderText;
 
 
     private void Start()
     {
-     
+
     }
     private void Update()
     {
@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        currentColliderText.text = other.name;
+        if (other.CompareTag("Region"))
+            currentColliderText.text = other.name;
     }
 }
