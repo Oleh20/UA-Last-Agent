@@ -5,6 +5,9 @@ using UnityEngine.Playables;
 
 public class DialogueTrigger : MonoBehaviour
 {
+    private StartMission startMission;
+    
+    
     [SerializeField] private Dialog dialog;
     [SerializeField] private TimeLine timeLine;
     [SerializeField] private Dialog alternativeDialog;
@@ -25,6 +28,7 @@ public class DialogueTrigger : MonoBehaviour
     private void Start()
     {
         dialogWindow.SetActive(false);
+        startMission = gameObject.GetComponent<StartMission>();
     }
     
 
@@ -37,7 +41,7 @@ public class DialogueTrigger : MonoBehaviour
     
         Dialog choosen = condition ? alternativeDialog : dialog;
         dialogWindow.SetActive(true);
-        FindObjectOfType<DialogueManager>().StartDialogue(choosen, needToGiveSomething, LoadNextScene, playNextTimeline);
+        FindObjectOfType<DialogueManager>().StartDialogue(choosen, needToGiveSomething, LoadNextScene, playNextTimeline, startMission.StartCurrentMision);
        
     }
     private void DialogExit()
