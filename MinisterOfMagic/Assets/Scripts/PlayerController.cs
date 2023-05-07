@@ -16,10 +16,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TopDownCharacterController topDownCharacterController;
     [SerializeField] private TextMeshProUGUI currentColliderText;
 
+    public GameObject transitionObjectScene;
+
 
     private void Start()
     {
-
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
+        if (objs.Length > 1)
+        {
+            Destroy(this.gameObject);
+        }
+        DontDestroyOnLoad(this.gameObject);
     }
     private void Update()
     {
@@ -45,5 +52,8 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Region"))
             currentColliderText.text = other.name;
+        if (other.CompareTag("DoorOpen"))
+            transitionObjectScene.SetActive(true);
+
     }
 }
