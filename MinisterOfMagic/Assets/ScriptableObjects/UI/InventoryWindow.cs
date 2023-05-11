@@ -7,21 +7,23 @@ public class InventoryWindow : MonoBehaviour
     [SerializeField] private Inventory targetInventory;
     [SerializeField] private RectTransform itemsPanel;
 
-    readonly List<GameObject> drawIcons = new List<GameObject>();    
+    readonly List<GameObject> drawIcons = new List<GameObject>();
     // Start is called before the first frame update
     private void Start()
     {
-        targetInventory.OnItemAdded += OnItemAdded;
+        targetInventory.OnItemChange += OnItemAdded;
+        targetInventory.OnItemStart = OnItemStart;
         Redraw();
     }
     private void OnItemAdded(Item obj) => Redraw();
+    private void OnItemStart(InventoryData obj) => Redraw();
 
     private void Redraw()
     {
         ClearDrawn();
-        for (var i = 0; i < targetInventory.InventoryItems.Count; i++)
+        for (var i = 0; i < targetInventory.InventoryItems.InventoryItems.Count; i++)
         {
-            var item = targetInventory.InventoryItems[i];
+            var item = targetInventory.InventoryItems.InventoryItems[i];
             var icon = new GameObject("Icon");
             icon.AddComponent<Image>().sprite = item.Icon;
             icon.transform.SetParent(itemsPanel);

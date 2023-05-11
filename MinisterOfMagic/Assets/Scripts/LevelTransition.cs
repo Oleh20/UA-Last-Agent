@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR;
 
 
 public class LevelTransition : MonoBehaviour
 {
-   public void changeScene(int scene)
+
+    [SerializeField] private int numberOfScene;
+    public void changeScene()
     {
-        SceneManager.LoadScene(scene);
+        SceneManager.LoadScene(numberOfScene);
     }
 }

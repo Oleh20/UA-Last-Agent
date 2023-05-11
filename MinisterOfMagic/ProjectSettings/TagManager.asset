@@ -7,6 +7,8 @@ TagManager:
   - Door
   - Canvas
   - Goal
+  - DoorOpen
+  - Region
   layers:
   - Default
   - TransparentFX
@@ -43,4 +45,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Border
+    uniqueID: 755957855
     locked: 0

@@ -16,10 +16,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TopDownCharacterController topDownCharacterController;
     [SerializeField] private TextMeshProUGUI currentColliderText;
 
+    public GameObject transitionObjectScene;
+
 
     private void Start()
     {
-
+       
     }
     private void Update()
     {
@@ -27,9 +29,9 @@ public class PlayerController : MonoBehaviour
     }
     private void throwObject()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (inventory.InventoryItems.Contains(itemForThrow))
+            if (inventory.InventoryItems.InventoryItems.Contains(itemForThrow))
             {
                 inventory.RemoveItem(itemForThrow);
                 itemApperOnMap.SetActive(true);
@@ -45,5 +47,8 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Region"))
             currentColliderText.text = other.name;
+        if (other.CompareTag("DoorOpen"))
+            transitionObjectScene.SetActive(true);
+
     }
 }
