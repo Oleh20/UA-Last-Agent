@@ -11,13 +11,11 @@ public class InventoryWindow : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        targetInventory.OnItemAdded += OnItemAdded;
-        targetInventory.OnItemAdded -= OnItemRemove;
+        targetInventory.OnItemChange += OnItemAdded;
         targetInventory.OnItemStart = OnItemStart;
         Redraw();
     }
     private void OnItemAdded(Item obj) => Redraw();
-    private void OnItemRemove(Item obj) => Redraw();
     private void OnItemStart(InventoryData obj) => Redraw();
 
     private void Redraw()

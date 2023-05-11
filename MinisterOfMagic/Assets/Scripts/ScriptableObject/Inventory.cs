@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public Action<Item> OnItemAdded;
-    public Action<Item> OnItemRemove;
+    public Action<Item> OnItemChange;
     public Action<InventoryData> OnItemStart;
 
     public InventoryData InventoryItems = new InventoryData();
@@ -23,7 +22,7 @@ public class Inventory : MonoBehaviour
     public void AddItem(Item item)
     {
         InventoryItems.InventoryItems.Add(item);
-        OnItemAdded?.Invoke(item);
+        OnItemChange?.Invoke(item);
         SaveInventory();
     }
 
@@ -35,7 +34,8 @@ public class Inventory : MonoBehaviour
     public void RemoveItem(Item item)
     {
         InventoryItems.InventoryItems.Remove(item);
-        OnItemRemove?.Invoke(item);
+        OnItemChange?.Invoke(item);
+        SaveInventory();
     }
 
     private void OnApplicationQuit()

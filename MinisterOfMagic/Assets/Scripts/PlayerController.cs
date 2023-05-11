@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     }
     private void throwObject()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             if (inventory.InventoryItems.InventoryItems.Contains(itemForThrow))
             {
