@@ -1,36 +1,51 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
-    public Action <Item> OnItemAdded;
-    [SerializeField] List<Item> StartItems = new List<Item>();
+    public Action<Item> OnItemAdded;
+    public Action<Item> OnItemRemove;
+    public Action<InventoryData> OnItemStart;
 
-    public List<Item> InventoryItems = new List<Item>();
+    public InventoryData InventoryItems = new InventoryData();
 
     private void Start()
     {
-        for (int i = 0; i < StartItems.Count; i++)
+        string json = PlayerPrefs.GetString("inventoryItems");
+        if (!string.IsNullOrEmpty(json))
         {
-            AddItem(StartItems[i]);
+            InventoryItems = JsonUtility.FromJson<InventoryData>(json);
+            OnItemStart?.Invoke(InventoryItems);
         }
     }
+
     public void AddItem(Item item)
     {
-        InventoryItems.Add(item);
+        InventoryItems.InventoryItems.Add(item);
         OnItemAdded?.Invoke(item);
+        SaveInventory();
     }
+
     public bool HasItem(Item item)
     {
-        return InventoryItems.Contains(item);
+        return InventoryItems.InventoryItems.Contains(item);
     }
 
     public void RemoveItem(Item item)
     {
-        InventoryItems.Remove(item);
-        OnItemAdded?.Invoke(item);
+        InventoryItems.InventoryItems.Remove(item);
+        OnItemRemove?.Invoke(item);
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveInventory();
+    }
+
+    private void SaveInventory()
+    {
+        string json = JsonUtility.ToJson(InventoryItems);
+        PlayerPrefs.SetString("inventoryItems", json);
     }
 }

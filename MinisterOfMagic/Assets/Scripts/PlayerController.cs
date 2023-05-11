@@ -21,12 +21,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
-        if (objs.Length > 1)
-        {
-            Destroy(this.gameObject);
-        }
-        DontDestroyOnLoad(this.gameObject);
+       
     }
     private void Update()
     {
@@ -36,7 +31,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (inventory.InventoryItems.Contains(itemForThrow))
+            if (inventory.InventoryItems.InventoryItems.Contains(itemForThrow))
             {
                 inventory.RemoveItem(itemForThrow);
                 itemApperOnMap.SetActive(true);
