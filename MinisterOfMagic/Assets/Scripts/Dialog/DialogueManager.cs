@@ -19,11 +19,12 @@ public class DialogueManager : MonoBehaviour
     private System.Action dialogueCallback;
     private System.Action nextSceneCallback;
     private System.Action nextTimeLineCallback;
+    private System.Action removeDialogCallback;
 
     private Coroutine typingCoroutine;
 
     private string currentSentence;
-    // Start is called before the first frame update
+    
     void Start()
     {
         sentences = new Queue<string>();
@@ -31,15 +32,13 @@ public class DialogueManager : MonoBehaviour
         heads = new Queue<Sprite>();
     }
 
-    public void StartDialogue(Dialog dialog, System.Action callback = null, System.Action nextScene = null, System.Action nextTimeLine = null)
+    public void StartDialogue(Dialog dialog, System.Action callback = null, System.Action nextScene = null, System.Action nextTimeLine = null, System.Action removeDialog = null)
     {
         dialogWindow = GameObject.Find("Dialog");
-        // очистимо черги перед початком нового діалогу
         sentences.Clear();
         names.Clear();
         heads.Clear();
 
-        // додамо всі речення, імена та голови відповідно до їх порядку в Dialog
         for (int i = 0; i < dialog.sentences.Length; i++)
         {
             sentences.Enqueue(dialog.sentences[i]);
@@ -51,11 +50,11 @@ public class DialogueManager : MonoBehaviour
         dialogueCallback = callback;
         nextSceneCallback = nextScene;
         nextTimeLineCallback = nextTimeLine;
+        removeDialogCallback = removeDialog;
     }
 
     public void DisplayNextSentences()
     {
-        // зупиняємо попередню корутину, якщо вона існує
         if (typingCoroutine != null)
         {
             StopCoroutine(typingCoroutine);
@@ -64,19 +63,16 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        // перевіряємо, чи закінчилися речення
         if (sentences.Count == 0)
         {
             EndDialogue();
             return;
         }
 
-        // беремо наступне речення, ім'я та голову
         string sentence = sentences.Dequeue();
         string name = names.Dequeue();
         Sprite head = heads.Dequeue();
 
-        // запускаємо корутину з виведенням речення посимвольно
         typingCoroutine =  StartCoroutine(TypeSentence(sentence, name, head));
     }
 
@@ -101,6 +97,7 @@ public class DialogueManager : MonoBehaviour
         if (dialogueCallback != null) dialogueCallback();
         if (nextSceneCallback != null) nextSceneCallback();
         if (nextTimeLineCallback != null) nextTimeLineCallback();
+        if (removeDialogCallback != null) removeDialogCallback();
     }
 
 }
