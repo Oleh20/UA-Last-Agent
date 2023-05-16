@@ -16591,7 +16591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &500763068
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17048,7 +17048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemToAdd: {fileID: 11400000, guid: 636bb9dd6e638734787d241896d1bad0, type: 2}
-  targetInventory: {fileID: 2076514469}
+  targetInventory: {fileID: 0}
 --- !u!114 &585047270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17079,10 +17079,12 @@ MonoBehaviour:
   dialogWindow: {fileID: 500763067}
   giveSomething: 0
   itemToAdd: {fileID: 11400000, guid: 636bb9dd6e638734787d241896d1bad0, type: 2}
+  afterCurrentDialogGiveObject: 0
   loadScene: {fileID: 0}
   turnOffTrigger: 0
   dialogs: []
   conditionsToCheck: []
+  currentDialog: 0
 --- !u!61 &585047271
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18504,10 +18506,12 @@ MonoBehaviour:
   dialogWindow: {fileID: 500763067}
   giveSomething: 0
   itemToAdd: {fileID: 11400000, guid: 636bb9dd6e638734787d241896d1bad0, type: 2}
+  afterCurrentDialogGiveObject: 0
   loadScene: {fileID: 297559209}
   turnOffTrigger: 0
   dialogs: []
   conditionsToCheck: []
+  currentDialog: 0
 --- !u!114 &703882486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18520,7 +18524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 064f2dfdeaeb23b4f8c8a4845dbef80a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 2076514469}
+  inventory: {fileID: 0}
   keyItem: {fileID: 11400000, guid: 636bb9dd6e638734787d241896d1bad0, type: 2}
   deleteAfter: 0
 --- !u!1 &726242053
@@ -18625,6 +18629,7 @@ MonoBehaviour:
   dialogWindow: {fileID: 500763067}
   giveSomething: 1
   itemToAdd: {fileID: 11400000, guid: 636bb9dd6e638734787d241896d1bad0, type: 2}
+  afterCurrentDialogGiveObject: 3
   loadScene: {fileID: 0}
   turnOffTrigger: 0
   dialogs:
@@ -18657,6 +18662,7 @@ MonoBehaviour:
   - {fileID: 726242058}
   - {fileID: 726242059}
   - {fileID: 726242058}
+  currentDialog: 1
 --- !u!114 &726242057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18670,7 +18676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemToAdd: {fileID: 11400000, guid: 636bb9dd6e638734787d241896d1bad0, type: 2}
-  targetInventory: {fileID: 2076514469}
+  targetInventory: {fileID: 0}
 --- !u!114 &726242058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19360,7 +19366,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1301248826}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2076514463}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfa25856c28f08e47a66592535b2af4d, type: 3}
@@ -20201,7 +20207,7 @@ MonoBehaviour:
   destinationSetter: {fileID: 1877592835}
   aIPath: {fileID: 1877592834}
   goal: {fileID: 281598784}
-  player: {fileID: 2076514469}
+  player: {fileID: 0}
   itemForAdd: {fileID: 11400000, guid: 636bb9dd6e638734787d241896d1bad0, type: 2}
 --- !u!1 &1915579828
 GameObject:
@@ -20255,7 +20261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4e3cf427dae914484e4c1c55c587bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetInventory: {fileID: 2076514469}
+  targetInventory: {fileID: 0}
   itemsPanel: {fileID: 811013654}
 --- !u!114 &1915579831
 MonoBehaviour:
@@ -20663,58 +20669,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2076514463 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5628018141983903104, guid: ef67ba864d1ecc042b5f4cf48455c0a6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1301248826}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2076514469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2076514463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfa25856c28f08e47a66592535b2af4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InventoryItems:
-    InventoryItems: []
---- !u!114 &2076514475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2076514463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fc326c8bade53d46bed7edeb45ce4a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  changeGoal: {fileID: 1877592839}
-  inventory: {fileID: 2076514469}
-  throwForce: 35
-  itemForThrow: {fileID: 11400000, guid: 636bb9dd6e638734787d241896d1bad0, type: 2}
-  itemApperOnMap: {fileID: 281598784}
-  topDownCharacterController: {fileID: 2076514480}
-  currentColliderText: {fileID: 0}
-  transitionObjectScene: {fileID: 0}
---- !u!114 &2076514480 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5628018141983903119, guid: ef67ba864d1ecc042b5f4cf48455c0a6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1301248826}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2076514463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abd146093740c5d43b5909c7913f3109, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &2076514481 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4616719885696106401, guid: ef67ba864d1ecc042b5f4cf48455c0a6,

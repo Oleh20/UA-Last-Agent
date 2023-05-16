@@ -7,11 +7,13 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] private TimeLine timeLine;
     [SerializeField] private Dialog alternativeDialog;
     [SerializeField] private GameObject dialogWindow;
+
+
     [SerializeField] private bool giveSomething = false;
+    [SerializeField] private Item itemToAdd;
 
     private Inventory inventoryUser;
 
-    [SerializeField] private Item itemToAdd;
 
     [SerializeField] private GameObject loadScene;
 
@@ -37,6 +39,7 @@ public class DialogueTrigger : MonoBehaviour
 
             if (conditionsToCheck[i].CheckCondition())
             {
+                giveSomething = true;
                 currentDialogIndex = i;
                 RemoveCurrentDialog();
             }
@@ -88,6 +91,7 @@ public class DialogueTrigger : MonoBehaviour
         {
             condition = true;
             inventoryUser.AddItem(itemToAdd);
+            itemToAdd = null;
         }
     }
     private void LoadNextScene()
