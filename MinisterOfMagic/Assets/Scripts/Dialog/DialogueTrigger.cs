@@ -34,15 +34,20 @@ public class DialogueTrigger : MonoBehaviour
         Dialog dialog = null;
         for (int i = 0; i < dialogs.Count; i++)
         {
-            if (conditionsToCheck[i] == true)
+
+            if (conditionsToCheck[i].CheckCondition())
             {
-                dialog = dialogs[i];
-                if (conditionsToCheck[i].DeleteAfter == true)
-                {
-                    currentDialogIndex = i;
-                }
+                currentDialogIndex = i;
+                RemoveCurrentDialog();
+            }
+            dialog = dialogs[i];
+            if (conditionsToCheck[i].DeleteAfter == true)
+            {
+                currentDialogIndex = i;
                 break;
             }
+            break;
+
         }
         return dialog;
     }
@@ -56,10 +61,6 @@ public class DialogueTrigger : MonoBehaviour
         {
             dialogWindow.SetActive(true);
             FindObjectOfType<DialogueManager>().StartDialogue(choosen, needToGiveSomething, LoadNextScene, playNextTimeline, RemoveCurrentDialog);
-        }
-        else
-        {
-            Debug.LogError("Some issue with conditions");
         }
 
     }
