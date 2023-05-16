@@ -21,6 +21,7 @@ public class DialogueManager : MonoBehaviour
     private System.Action nextSceneCallback;
     private System.Action nextTimeLineCallback;
     private System.Action startMissionCallback;
+    
 
     private Coroutine typingCoroutine;
 

@@ -17,7 +17,7 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] private Item itemToAdd;
 
     [SerializeField] private Condition conditionToCheck;
-    [SerializeField] private Mission mission;
+    
 
     [SerializeField] private GameObject loadScene;
 

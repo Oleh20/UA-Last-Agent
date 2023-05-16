@@ -9,6 +9,7 @@ public class StartMission : MonoBehaviour
     [SerializeField] private string nameRegion;
     [SerializeField] private GameObject textMission;
     [SerializeField] private GameObject textStartMission;
+    [SerializeField] private Mission mission;
 
     // Start is called before the first frame update
     void Start()
@@ -29,5 +30,7 @@ public class StartMission : MonoBehaviour
         nameOfMission.text = nameMission;
         textMission.SetActive(true);
         textStartMission.SetActive(true);
+        mission.LogicMission();
+
     }
 }
