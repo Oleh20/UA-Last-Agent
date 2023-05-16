@@ -5,7 +5,7 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private ChangeGoal changeGoal;
+    private ChangeGoal changeGoal;
 
     [SerializeField] private Inventory inventory;
 
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-       
+        changeGoal = GetComponent<ChangeGoal>();
     }
     private void Update()
     {
