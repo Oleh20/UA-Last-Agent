@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -21,9 +20,13 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(Item item)
     {
-        InventoryItems.InventoryItems.Add(item);
-        OnItemChange?.Invoke(item);
-        SaveInventory();
+        if (item != null)
+        {
+            InventoryItems.InventoryItems.Add(item);
+            OnItemChange?.Invoke(item);
+            SaveInventory();
+        }
+
     }
 
     public bool HasItem(Item item)

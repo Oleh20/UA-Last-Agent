@@ -1,47 +1,65 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Playables;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    [SerializeField] private Dialog dialog;
     [SerializeField] private TimeLine timeLine;
-    [SerializeField] private Dialog alternativeDialog;
     [SerializeField] private GameObject dialogWindow;
     [SerializeField] private bool giveSomething = false;
-
-    private Inventory inventoryUser;
-
     [SerializeField] private Item itemToAdd;
-
-    [SerializeField] private Condition conditionToCheck;
 
     [SerializeField] private GameObject loadScene;
 
-    private bool condition = false;
+    
     [SerializeField] private bool turnOffTrigger;
 
-  
+    [SerializeField] private List<Dialog> dialogs;
+    [SerializeField] private List<Condition> conditionsToCheck;
+
+    private int currentDialogIndex = -1;
+    private bool condition = false;
+    private Inventory inventoryUser;
 
     private void Start()
     {
         inventoryUser = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         dialogWindow.SetActive(false);
     }
-    
+    private Dialog CheckCurrentDialog(List<Dialog> dialogs, List<Condition> conditionsToCheck)
+    {
+        Dialog dialog = null;
+        for (int i = 0; i < dialogs.Count; i++)
+        {
+
+            if (conditionsToCheck[i].CheckCondition())
+            {
+                giveSomething = true;
+                currentDialogIndex = i;
+                RemoveCurrentDialog();
+            }
+            dialog = dialogs[i];
+            if (conditionsToCheck[i].DeleteAfter == true)
+            {
+                currentDialogIndex = i;
+                break;
+            }
+            break;
+
+        }
+        return dialog;
+    }
 
     private void TriggerDialogue()
     {
-        if (conditionToCheck.CheckCondition())
+
+        Dialog choosen = CheckCurrentDialog(dialogs, conditionsToCheck);
+
+        if (choosen != null)
         {
-            condition = true;
+            dialogWindow.SetActive(true);
+            FindObjectOfType<DialogueManager>().StartDialogue(choosen, needToGiveSomething, LoadNextScene, playNextTimeline, RemoveCurrentDialog);
         }
-    
-        Dialog choosen = condition ? alternativeDialog : dialog;
-        dialogWindow.SetActive(true);
-        FindObjectOfType<DialogueManager>().StartDialogue(choosen, needToGiveSomething, LoadNextScene, playNextTimeline);
-       
+
     }
     private void DialogExit()
     {
@@ -67,12 +85,13 @@ public class DialogueTrigger : MonoBehaviour
         {
             condition = true;
             inventoryUser.AddItem(itemToAdd);
+            itemToAdd = null;
         }
     }
     private void LoadNextScene()
     {
         string tag = gameObject.tag;
-        if (tag == "Door" && condition) 
+        if (tag == "Door" && condition)
         {
             loadScene.SetActive(true);
         }
@@ -83,6 +102,15 @@ public class DialogueTrigger : MonoBehaviour
         {
             timeLine.playableDirector.playableAsset = timeLine.timelineAsset;
             timeLine.playableDirector.Play();
+        }
+    }
+    public void RemoveCurrentDialog()
+    {
+        if (currentDialogIndex != -1)
+        {
+            dialogs.RemoveAt(currentDialogIndex);
+            conditionsToCheck.RemoveAt(currentDialogIndex);
+            currentDialogIndex = -1;
         }
     }
 }

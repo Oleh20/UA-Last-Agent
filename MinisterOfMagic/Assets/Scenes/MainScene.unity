@@ -16515,7 +16515,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &499727722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16591,7 +16591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &500763068
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17002,6 +17002,8 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5628018141983903119, guid: ef67ba864d1ecc042b5f4cf48455c0a6, type: 3}
     - {fileID: 5628018141983903117, guid: ef67ba864d1ecc042b5f4cf48455c0a6, type: 3}
+    - {fileID: 1140833369, guid: ef67ba864d1ecc042b5f4cf48455c0a6, type: 3}
+    - {fileID: 1140833372, guid: ef67ba864d1ecc042b5f4cf48455c0a6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ef67ba864d1ecc042b5f4cf48455c0a6, type: 3}
 --- !u!1 &585047267
 GameObject:
@@ -17048,7 +17050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemToAdd: {fileID: 11400000, guid: 636bb9dd6e638734787d241896d1bad0, type: 2}
-  targetInventory: {fileID: 2076514469}
+  targetInventory: {fileID: 0}
 --- !u!114 &585047270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17079,9 +17081,10 @@ MonoBehaviour:
   dialogWindow: {fileID: 500763067}
   giveSomething: 0
   itemToAdd: {fileID: 11400000, guid: 636bb9dd6e638734787d241896d1bad0, type: 2}
-  conditionToCheck: {fileID: 585047268}
   loadScene: {fileID: 0}
   turnOffTrigger: 0
+  dialogs: []
+  conditionsToCheck: []
 --- !u!61 &585047271
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18503,9 +18506,10 @@ MonoBehaviour:
   dialogWindow: {fileID: 500763067}
   giveSomething: 0
   itemToAdd: {fileID: 11400000, guid: 636bb9dd6e638734787d241896d1bad0, type: 2}
-  conditionToCheck: {fileID: 703882486}
   loadScene: {fileID: 297559209}
   turnOffTrigger: 0
+  dialogs: []
+  conditionsToCheck: []
 --- !u!114 &703882486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18518,8 +18522,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 064f2dfdeaeb23b4f8c8a4845dbef80a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 2076514469}
+  inventory: {fileID: 0}
   keyItem: {fileID: 11400000, guid: 636bb9dd6e638734787d241896d1bad0, type: 2}
+  deleteAfter: 0
 --- !u!1 &726242053
 GameObject:
   m_ObjectHideFlags: 0
@@ -18532,6 +18537,7 @@ GameObject:
   - component: {fileID: 726242054}
   - component: {fileID: 726242056}
   - component: {fileID: 726242057}
+  - component: {fileID: 726242059}
   - component: {fileID: 726242058}
   m_Layer: 0
   m_Name: Goal
@@ -18596,31 +18602,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialog:
     names:
-    - "\u041A\u0430\u043C\u0456\u043D\u0447\u0438\u043A"
-    - "\u041C\u0443\u0440\u0447\u0438\u043A"
-    - "\u041A\u0430\u043C\u0456\u043D\u0447\u0438\u043A"
-    - "\u041A\u0430\u043C\u0456\u043D\u0447\u0438\u043A"
-    - "\u041C\u0443\u0440\u0447\u0438\u043A"
+    - "\u0410\u0433\u0435\u043D\u0442"
+    - "\u041A\u0430\u043C\u0456\u043D\u044C"
+    - "\u0410\u0433\u0435\u043D\u0442"
     heads:
-    - {fileID: 21300000, guid: 62ce01ddca719d34ea9648c586a7cc94, type: 3}
-    - {fileID: 21300000, guid: d4d64a6cd9624c34a815dd79fb2a20a4, type: 3}
-    - {fileID: 21300000, guid: 62ce01ddca719d34ea9648c586a7cc94, type: 3}
-    - {fileID: 21300000, guid: 62ce01ddca719d34ea9648c586a7cc94, type: 3}
-    - {fileID: 21300000, guid: e60718119cec31e4190849292fcde068, type: 3}
+    - {fileID: 21300000, guid: 6509adb73ba1de04d898264b898cdf2e, type: 3}
+    - {fileID: 21300000, guid: af91b161f106d9e46b3704f05a3ab63d, type: 3}
+    - {fileID: 21300000, guid: 6509adb73ba1de04d898264b898cdf2e, type: 3}
     sentences:
-    - "\u0427\u0438 \u043A\u0456\u0442 \u0447\u0438 \u0445\u043E\u043B\u043E\u0434\u0438\u043B\u044C\u043D\u0438\u043A?"
-    - "\u041C\u044F\u0443"
-    - "\u041F\u043E\u0445\u043E\u0434\u0443 \u0432\u0441\u0435 \u0436 \u043D\u0430
-      \u0445\u043E\u043B\u043E\u0434\u0438\u043B\u044C\u043D\u0438\u043A \u0437\u043C\u0430\u0445\u0443\u0454\u0448"
-    - "\u0414\u043E\u0431\u0440\u0435, \u043D\u0430 \u0442\u043E\u0431\u0456 \u0446\u044E
-      \u0447\u0430\u0440\u0456\u0432\u043D\u0443 \u0448\u043D\u044F\u0433\u0443 \u044F\u043A\u0430
-      \u0434\u043E\u043C\u043E\u0436\u0435 \u0432\u0456\u0434\u043A\u0440\u0438\u0442\u0438
-      \u0434\u0432\u0435\u0440\u0456"
-    - "\u0429\u043E \u0434\u0438\u0432\u0438\u0448\u0441\u044F? \u0406\u0434\u0438
-      \u0434\u0430\u0432\u0430\u0439, \u044F \u0442\u043E\u0431\u0456 \u043D\u0435
-      \u043A\u0430\u0440\u0456\u0442\u0430\u0441 \u0449\u043E\u0431 \u0431\u0435\u0437\u043F\u043B\u0430\u0442\u043D\u043E
-      \u0434\u0430\u0432\u0430\u0442\u0438, \u0437\u0430\u0440\u0430\u0437 \u0433\u0440\u043E\u0448\u0456
-      \u043F\u043E\u043F\u0440\u043E\u0448\u0443"
+    - "\u0449\u043E \u0446\u0435"
+    - "\u0442\u0438 \u043C\u0430\u0454\u0448 \u0434\u0456\u0441\u0442\u0430\u0442\u0438
+      \u043A\u043B\u044E\u0447"
+    - "\u043E\u043A"
   timeLine:
     timelineAsset: {fileID: 11400000, guid: 8ce57efca80651749ab2c58282441008, type: 2}
     playableDirector: {fileID: 1075094451}
@@ -18632,11 +18625,40 @@ MonoBehaviour:
     sentences:
     - "\u0412\u0441\u0435, \u0432\u0456\u0434\u0441\u0442\u0430\u043D\u044C..."
   dialogWindow: {fileID: 500763067}
-  giveSomething: 1
+  giveSomething: 0
   itemToAdd: {fileID: 11400000, guid: 636bb9dd6e638734787d241896d1bad0, type: 2}
-  conditionToCheck: {fileID: 726242058}
   loadScene: {fileID: 0}
   turnOffTrigger: 0
+  dialogs:
+  - names:
+    - "\u0410\u0433\u0435\u043D\u0442"
+    - "\u041A\u0430\u043C\u0456\u043D\u044C"
+    - "\u0410\u0433\u0435\u043D\u0442"
+    heads:
+    - {fileID: 21300000, guid: 6509adb73ba1de04d898264b898cdf2e, type: 3}
+    - {fileID: 21300000, guid: af91b161f106d9e46b3704f05a3ab63d, type: 3}
+    - {fileID: 21300000, guid: 6509adb73ba1de04d898264b898cdf2e, type: 3}
+    sentences:
+    - "\u0449\u043E \u0446\u0435"
+    - "\u0442\u0438 \u043C\u0430\u0454\u0448 \u0434\u0456\u0441\u0442\u0430\u0442\u0438
+      \u043A\u043B\u044E\u0447"
+    - "\u043E\u043A"
+  - names:
+    - "\u041A\u0430\u043C\u0456\u043D\u044C"
+    heads:
+    - {fileID: 21300000, guid: 6509adb73ba1de04d898264b898cdf2e, type: 3}
+    sentences:
+    - "\u044F\u043A \u0443\u0441\u043F\u0456\u0445\u0438"
+  - names:
+    - "\u041A\u0430\u043C\u0456\u043D\u044C"
+    heads:
+    - {fileID: 21300000, guid: 6509adb73ba1de04d898264b898cdf2e, type: 3}
+    sentences:
+    - "\u043A\u0440\u0430\u0441\u0430\u0432\u0430"
+  conditionsToCheck:
+  - {fileID: 726242058}
+  - {fileID: 726242059}
+  - {fileID: 726242058}
 --- !u!114 &726242057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18650,7 +18672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemToAdd: {fileID: 11400000, guid: 636bb9dd6e638734787d241896d1bad0, type: 2}
-  targetInventory: {fileID: 2076514469}
+  targetInventory: {fileID: 0}
 --- !u!114 &726242058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18660,9 +18682,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 726242053}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 443e47fa278c2fd4c82fe882d0018b9f, type: 3}
+  m_Script: {fileID: 11500000, guid: b0e46eb932b25ba4f85d80b694670245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deleteAfter: 1
+--- !u!114 &726242059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726242053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 064f2dfdeaeb23b4f8c8a4845dbef80a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 1301248827}
+  keyItem: {fileID: 11400000, guid: 636bb9dd6e638734787d241896d1bad0, type: 2}
+  deleteAfter: 0
 --- !u!1 &756937992
 GameObject:
   m_ObjectHideFlags: 0
@@ -18964,7 +19002,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!320 &1075094451
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -19318,6 +19356,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef67ba864d1ecc042b5f4cf48455c0a6, type: 3}
+--- !u!114 &1301248827 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1140833369, guid: ef67ba864d1ecc042b5f4cf48455c0a6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1301248826}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfa25856c28f08e47a66592535b2af4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1362799129 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7947911505737750448, guid: 91afc0649ae41a64c860a5d49f05ff40,
@@ -19351,7 +19401,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -20153,7 +20203,7 @@ MonoBehaviour:
   destinationSetter: {fileID: 1877592835}
   aIPath: {fileID: 1877592834}
   goal: {fileID: 281598784}
-  player: {fileID: 2076514469}
+  player: {fileID: 0}
   itemForAdd: {fileID: 11400000, guid: 636bb9dd6e638734787d241896d1bad0, type: 2}
 --- !u!1 &1915579828
 GameObject:
@@ -20207,7 +20257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4e3cf427dae914484e4c1c55c587bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetInventory: {fileID: 2076514469}
+  targetInventory: {fileID: 1301248827}
   itemsPanel: {fileID: 811013654}
 --- !u!114 &1915579831
 MonoBehaviour:
@@ -20553,7 +20603,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2064617951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20615,57 +20665,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2076514463 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5628018141983903104, guid: ef67ba864d1ecc042b5f4cf48455c0a6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1301248826}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2076514469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2076514463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfa25856c28f08e47a66592535b2af4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StartItems: []
-  InventoryItems: []
---- !u!114 &2076514475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2076514463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fc326c8bade53d46bed7edeb45ce4a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  changeGoal: {fileID: 1877592839}
-  inventory: {fileID: 2076514469}
-  throwForce: 35
-  itemForThrow: {fileID: 11400000, guid: 636bb9dd6e638734787d241896d1bad0, type: 2}
-  itemApperOnMap: {fileID: 281598784}
-  topDownCharacterController: {fileID: 2076514480}
-  currentColliderText: {fileID: 0}
---- !u!114 &2076514480 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5628018141983903119, guid: ef67ba864d1ecc042b5f4cf48455c0a6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1301248826}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2076514463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abd146093740c5d43b5909c7913f3109, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &2076514481 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4616719885696106401, guid: ef67ba864d1ecc042b5f4cf48455c0a6,
