@@ -3,28 +3,22 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    [SerializeField] private Dialog dialog;
     [SerializeField] private TimeLine timeLine;
-    [SerializeField] private Dialog alternativeDialog;
     [SerializeField] private GameObject dialogWindow;
-
-
     [SerializeField] private bool giveSomething = false;
     [SerializeField] private Item itemToAdd;
 
-    private Inventory inventoryUser;
-
-
     [SerializeField] private GameObject loadScene;
 
-    private bool condition = false;
+    
     [SerializeField] private bool turnOffTrigger;
 
     [SerializeField] private List<Dialog> dialogs;
     [SerializeField] private List<Condition> conditionsToCheck;
 
     private int currentDialogIndex = -1;
-
+    private bool condition = false;
+    private Inventory inventoryUser;
 
     private void Start()
     {
