@@ -3,24 +3,67 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> gameObjectsNotDestroy;
-    void Start()
-    {
+    private bool isApplicationQuitting = false;
+    private static GameObject gameManager;
 
-        foreach (GameObject gameObject in gameObjectsNotDestroy)
+    private void Awake()
+    {
+        gameManager = gameObject;
+        checkOnLoadScene();
+    }
+
+    private void Start()
+    {
+        DontDestroyOnLoad(gameManager);
+    }
+
+    private void OnDisable()
+    {
+        SaveScene();
+    }
+
+    private void SaveScene()
+    {
+        string currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        PlayerPrefs.SetString("LastScene", currentScene);
+    }
+
+    private void LoadLastScene()
+    {
+        if (PlayerPrefs.HasKey("LastScene"))
         {
-            GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
-            if (objs.Length > 1)
-            {
-                Destroy(gameObject);
-            }
-            DontDestroyOnLoad(gameObject);
+            string lastScene = PlayerPrefs.GetString("LastScene");
+            UnityEngine.SceneManagement.SceneManager.LoadScene(lastScene);
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnApplicationQuit()
     {
+        isApplicationQuitting = true;
+    }
 
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (!hasFocus && !isApplicationQuitting)
+        {
+            PlayerPrefs.SetInt("LoadFirstTime", 1);
+        }
+    }
+
+    private void checkOnLoadScene()
+    {
+        if (PlayerPrefs.HasKey("LoadFirstTime"))
+        {
+            if (PlayerPrefs.GetInt("LoadFirstTime", 0) == 1)
+            {
+                LoadLastScene();
+                PlayerPrefs.SetInt("LoadFirstTime", 0);
+            }
+        }
+        else
+        {
+            LoadLastScene();
+            PlayerPrefs.SetInt("LoadFirstTime", 0);
+        }
     }
 }
