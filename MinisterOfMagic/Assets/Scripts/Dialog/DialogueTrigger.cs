@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
+    private StartMission startMission;
+    
+    
     [SerializeField] private TimeLine timeLine;
     [SerializeField] private GameObject dialogWindow;
     [SerializeField] private bool giveSomething = false;
@@ -24,6 +27,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         inventoryUser = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         dialogWindow.SetActive(false);
+        startMission = gameObject.GetComponent<StartMission>();
     }
     private Dialog CheckCurrentDialog(List<Dialog> dialogs, List<Condition> conditionsToCheck)
     {

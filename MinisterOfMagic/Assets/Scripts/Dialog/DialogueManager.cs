@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+
     [SerializeField] private TextMeshProUGUI dialogText;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private Image headImage;
@@ -20,6 +21,7 @@ public class DialogueManager : MonoBehaviour
     private System.Action nextSceneCallback;
     private System.Action nextTimeLineCallback;
     private System.Action removeDialogCallback;
+    private System.Action startMissionCallback;
 
     private Coroutine typingCoroutine;
 
@@ -32,7 +34,7 @@ public class DialogueManager : MonoBehaviour
         heads = new Queue<Sprite>();
     }
 
-    public void StartDialogue(Dialog dialog, System.Action callback = null, System.Action nextScene = null, System.Action nextTimeLine = null, System.Action removeDialog = null)
+    public void StartDialogue(Dialog dialog, System.Action callback = null, System.Action nextScene = null, System.Action nextTimeLine = null, System.Action removeDialog = null, System.Action startMission = null)
     {
         dialogWindow = GameObject.Find("Dialog");
         sentences.Clear();
@@ -51,6 +53,7 @@ public class DialogueManager : MonoBehaviour
         nextSceneCallback = nextScene;
         nextTimeLineCallback = nextTimeLine;
         removeDialogCallback = removeDialog;
+        startMissionCallback = startMission;
     }
 
     public void DisplayNextSentences()
@@ -98,6 +101,7 @@ public class DialogueManager : MonoBehaviour
         if (nextSceneCallback != null) nextSceneCallback();
         if (nextTimeLineCallback != null) nextTimeLineCallback();
         if (removeDialogCallback != null) removeDialogCallback();
+        if (startMissionCallback != null) startMissionCallback();
     }
 
 }
