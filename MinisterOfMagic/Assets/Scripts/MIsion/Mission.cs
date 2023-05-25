@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class Mission : MonoBehaviour
 {
-    public virtual void LogicMission() { }  
+    public virtual void LogicMission() { }
+ 
 }
