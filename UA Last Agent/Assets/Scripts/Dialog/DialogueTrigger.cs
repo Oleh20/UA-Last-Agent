@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
+    private StartMission startMission;
     [SerializeField] private TimeLine timeLine;
     [SerializeField] private GameObject dialogWindow;
     [SerializeField] private bool giveSomething = false;
@@ -12,9 +13,11 @@ public class DialogueTrigger : MonoBehaviour
 
     
     [SerializeField] private bool turnOffTrigger;
+   
 
     [SerializeField] private List<Dialog> dialogs;
     [SerializeField] private List<Condition> conditionsToCheck;
+  
 
     private int currentDialogIndex = -1;
     private bool condition = false;
@@ -24,6 +27,11 @@ public class DialogueTrigger : MonoBehaviour
     {
         inventoryUser = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         dialogWindow.SetActive(false);
+
+        
+        dialogWindow.SetActive(false);
+        startMission = gameObject.GetComponent<StartMission>();
+        
     }
     private Dialog CheckCurrentDialog(List<Dialog> dialogs, List<Condition> conditionsToCheck)
     {
@@ -57,7 +65,7 @@ public class DialogueTrigger : MonoBehaviour
         if (choosen != null)
         {
             dialogWindow.SetActive(true);
-            FindObjectOfType<DialogueManager>().StartDialogue(choosen, needToGiveSomething, LoadNextScene, playNextTimeline, RemoveCurrentDialog);
+            FindObjectOfType<DialogueManager>().StartDialogue(choosen, needToGiveSomething, LoadNextScene, playNextTimeline, RemoveCurrentDialog, startMission.StartCurrentMision);
         }
 
     }
