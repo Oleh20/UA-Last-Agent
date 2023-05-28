@@ -14,14 +14,9 @@ public class FinishMissionCondition : Condition
 
     public bool endMission;
 
-    private void Update()
-    {
-        Debug.Log(FinishMission);
-    }
-
     public override bool CheckCondition()
     {
-        return false;
+        return FinishMission;
     }
 
 }

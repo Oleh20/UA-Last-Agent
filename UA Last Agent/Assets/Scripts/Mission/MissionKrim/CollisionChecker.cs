@@ -7,13 +7,13 @@ public class CollisionChecker : MonoBehaviour
 {
     [SerializeField] private FinishMissionCondition finishMissionCondition;
 
-    public GameObject bombZone1;
-    public GameObject bombZone2;
-    public GameObject bombZone3;
+    [SerializeField] private GameObject bombZone1;
+    [SerializeField] private GameObject bombZone2;
+    [SerializeField] private GameObject bombZone3;
 
-    public GameObject bomb1;
-    public GameObject bomb2;
-    public GameObject bomb3;
+    [SerializeField] private GameObject bomb1;
+    [SerializeField] private GameObject bomb2;
+    [SerializeField] private GameObject bomb3;
 
     private bool bomb1InsideZone = false;
     private bool bomb2InsideZone = false;
@@ -28,6 +28,7 @@ public class CollisionChecker : MonoBehaviour
         if (bomb1InsideZone && bomb2InsideZone && bomb3InsideZone)
         {
             finishMissionCondition.endMission = true;
+           
         }
     }
 
@@ -35,8 +36,8 @@ public class CollisionChecker : MonoBehaviour
     {
         if (bomb != null && bombZone != null)
         {
-            Collider2D bombCollider = bomb.GetComponent<Collider2D>();
-            Collider2D zoneCollider = bombZone.GetComponent<Collider2D>();
+            Collider2D bombCollider = bomb.GetComponent<BoxCollider2D>();
+            Collider2D zoneCollider = bombZone.GetComponent<BoxCollider2D>();
 
             if (bombCollider != null && zoneCollider != null)
             {
