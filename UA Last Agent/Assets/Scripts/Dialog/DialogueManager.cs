@@ -21,6 +21,8 @@ public class DialogueManager : MonoBehaviour
     private System.Action nextTimeLineCallback;
     private System.Action removeDialogCallback;
 
+    private System.Action startMissionCallback;
+
     private Coroutine typingCoroutine;
 
     private string currentSentence;
@@ -32,7 +34,7 @@ public class DialogueManager : MonoBehaviour
         heads = new Queue<Sprite>();
     }
 
-    public void StartDialogue(Dialog dialog, System.Action callback = null, System.Action nextScene = null, System.Action nextTimeLine = null, System.Action removeDialog = null)
+    public void StartDialogue(Dialog dialog, System.Action callback = null, System.Action nextScene = null, System.Action nextTimeLine = null, System.Action removeDialog = null, System.Action startMission = null)
     {
         dialogWindow = GameObject.Find("Dialog");
         sentences.Clear();
@@ -51,6 +53,8 @@ public class DialogueManager : MonoBehaviour
         nextSceneCallback = nextScene;
         nextTimeLineCallback = nextTimeLine;
         removeDialogCallback = removeDialog;
+        startMissionCallback = startMission;
+
     }
 
     public void DisplayNextSentences()
@@ -98,6 +102,7 @@ public class DialogueManager : MonoBehaviour
         if (nextSceneCallback != null) nextSceneCallback();
         if (nextTimeLineCallback != null) nextTimeLineCallback();
         if (removeDialogCallback != null) removeDialogCallback();
+        if (startMissionCallback != null) startMissionCallback();
     }
 
 }
