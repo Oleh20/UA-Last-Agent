@@ -7,17 +7,17 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] private TimeLine timeLine;
     [SerializeField] private GameObject dialogWindow;
     [SerializeField] private bool giveSomething = false;
-    [SerializeField] private Item itemToAdd;
+    [SerializeField] private List<Item> itemsToAdd;
 
     [SerializeField] private GameObject loadScene;
 
-    
+
     [SerializeField] private bool turnOffTrigger;
-   
+
 
     [SerializeField] private List<Dialog> dialogs;
     [SerializeField] private List<Condition> conditionsToCheck;
-  
+
 
     private int currentDialogIndex = -1;
     private bool condition = false;
@@ -28,10 +28,10 @@ public class DialogueTrigger : MonoBehaviour
         inventoryUser = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         dialogWindow.SetActive(false);
 
-        
+
         dialogWindow.SetActive(false);
         startMission = gameObject.GetComponent<StartMission>();
-        
+
     }
     private Dialog CheckCurrentDialog(List<Dialog> dialogs, List<Condition> conditionsToCheck)
     {
@@ -65,7 +65,7 @@ public class DialogueTrigger : MonoBehaviour
         if (choosen != null)
         {
             dialogWindow.SetActive(true);
-            FindObjectOfType<DialogueManager>().StartDialogue(choosen, needToGiveSomething, LoadNextScene, playNextTimeline, RemoveCurrentDialog, startMission.StartCurrentMision);
+            FindObjectOfType<DialogueManager>().StartDialogue(choosen, needToGiveSomething, LoadNextScene, playNextTimeline, RemoveCurrentDialog, StarMission);
         }
 
     }
@@ -92,8 +92,9 @@ public class DialogueTrigger : MonoBehaviour
         if (giveSomething && !condition)
         {
             condition = true;
-            inventoryUser.AddItem(itemToAdd);
-            itemToAdd = null;
+            inventoryUser.AddItem(itemsToAdd[0]);
+            itemsToAdd.RemoveAt(0);
+            giveSomething = false;
         }
     }
     private void LoadNextScene()
@@ -120,5 +121,18 @@ public class DialogueTrigger : MonoBehaviour
             conditionsToCheck.RemoveAt(currentDialogIndex);
             currentDialogIndex = -1;
         }
+    }
+    private void StarMission()
+    {
+        if (startMission.AfterDialogStartMission == 0)
+        {
+            startMission.StartCurrentMision();
+            startMission.AfterDialogStartMission = -1;
+        }
+        else
+        {
+            startMission.AfterDialogStartMission--;
+        }
+
     }
 }
