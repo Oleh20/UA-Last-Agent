@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
@@ -6,7 +7,6 @@ public class DialogueTrigger : MonoBehaviour
     private StartMission startMission;
     [SerializeField] private TimeLine timeLine;
     [SerializeField] private GameObject dialogWindow;
-    [SerializeField] private bool giveSomething = false;
     [SerializeField] private List<Item> itemsToAdd;
 
     [SerializeField] private GameObject loadScene;
@@ -20,8 +20,9 @@ public class DialogueTrigger : MonoBehaviour
 
 
     private int currentDialogIndex = -1;
-    private bool condition = false;
     private Inventory inventoryUser;
+    private Type typeOfCondition;
+    private bool canStartMission;
 
     private void Start()
     {
@@ -41,11 +42,15 @@ public class DialogueTrigger : MonoBehaviour
 
             if (conditionsToCheck[i].CheckCondition())
             {
-                giveSomething = true;
+                typeOfCondition = conditionsToCheck[0].GetType();
                 currentDialogIndex = i;
                 RemoveCurrentDialog();
             }
             dialog = dialogs[i];
+            if (conditionsToCheck.Count > 1 && conditionsToCheck[1].GetType() == typeof(FinishMissionCondition))
+            {
+                canStartMission = true;
+            }
             if (conditionsToCheck[i].DeleteAfter == true)
             {
                 currentDialogIndex = i;
@@ -89,18 +94,13 @@ public class DialogueTrigger : MonoBehaviour
     }
     private void needToGiveSomething()
     {
-        if (giveSomething && !condition)
-        {
-            condition = true;
-            inventoryUser.AddItem(itemsToAdd[0]);
-            itemsToAdd.RemoveAt(0);
-            giveSomething = false;
-        }
+        if (typeOfCondition == typeof(FinishMissionCondition))
+            inventoryUser.AddItem(startMission.itemAfterMission);
     }
     private void LoadNextScene()
     {
         string tag = gameObject.tag;
-        if (tag == "Door" && condition)
+        if (tag == "Door")
         {
             loadScene.SetActive(true);
         }
@@ -124,14 +124,11 @@ public class DialogueTrigger : MonoBehaviour
     }
     private void StarMission()
     {
-        if (startMission.AfterDialogStartMission == 0)
+        if (canStartMission)
         {
             startMission.StartCurrentMision();
-            startMission.AfterDialogStartMission = -1;
-        }
-        else
-        {
-            startMission.AfterDialogStartMission--;
+            inventoryUser.AddItem(startMission.itemForMission);
+            canStartMission = false;
         }
 
     }

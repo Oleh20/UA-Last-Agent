@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Mission : MonoBehaviour
+public class Mission : MonoBehaviour, IMission
 {
     public virtual void LogicMission() { }
     public virtual void EndMission() { }
-
 }

@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class StartMission : MonoBehaviour
 {
-    public int AfterDialogStartMission;
 
     [SerializeField] private string nameMission;
     [SerializeField] private string nameRegion;
@@ -11,6 +10,9 @@ public class StartMission : MonoBehaviour
     [SerializeField] private GameObject textStartMission;
     [SerializeField] private Mission mission;
 
+
+     public Item itemForMission;
+     public Item itemAfterMission;
     public void StartCurrentMision()
     {
         TextMeshProUGUI nameOfMission = textMission.GetComponent<TextMeshProUGUI>();
@@ -18,5 +20,9 @@ public class StartMission : MonoBehaviour
         textMission.SetActive(true);
         textStartMission.SetActive(true);
         mission.LogicMission();
+    }
+    public void EndCurrentMission()
+    {
+        mission.EndMission();
     }
 }
