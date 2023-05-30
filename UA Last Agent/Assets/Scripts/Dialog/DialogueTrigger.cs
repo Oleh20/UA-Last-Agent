@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
@@ -6,32 +7,32 @@ public class DialogueTrigger : MonoBehaviour
     private StartMission startMission;
     [SerializeField] private TimeLine timeLine;
     [SerializeField] private GameObject dialogWindow;
-    [SerializeField] private bool giveSomething = false;
-    [SerializeField] private Item itemToAdd;
+    [SerializeField] private List<Item> itemsToAdd;
 
     [SerializeField] private GameObject loadScene;
 
-    
+
     [SerializeField] private bool turnOffTrigger;
-   
+
 
     [SerializeField] private List<Dialog> dialogs;
     [SerializeField] private List<Condition> conditionsToCheck;
-  
+
 
     private int currentDialogIndex = -1;
-    private bool condition = false;
     private Inventory inventoryUser;
+    private Type typeOfCondition;
+    private bool canStartMission;
 
     private void Start()
     {
         inventoryUser = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         dialogWindow.SetActive(false);
 
-        
+
         dialogWindow.SetActive(false);
         startMission = gameObject.GetComponent<StartMission>();
-        
+
     }
     private Dialog CheckCurrentDialog(List<Dialog> dialogs, List<Condition> conditionsToCheck)
     {
@@ -41,11 +42,15 @@ public class DialogueTrigger : MonoBehaviour
 
             if (conditionsToCheck[i].CheckCondition())
             {
-                giveSomething = true;
+                typeOfCondition = conditionsToCheck[0].GetType();
                 currentDialogIndex = i;
                 RemoveCurrentDialog();
             }
             dialog = dialogs[i];
+            if (conditionsToCheck.Count > 1 && conditionsToCheck[1].GetType() == typeof(FinishMissionCondition))
+            {
+                canStartMission = true;
+            }
             if (conditionsToCheck[i].DeleteAfter == true)
             {
                 currentDialogIndex = i;
@@ -65,7 +70,7 @@ public class DialogueTrigger : MonoBehaviour
         if (choosen != null)
         {
             dialogWindow.SetActive(true);
-            FindObjectOfType<DialogueManager>().StartDialogue(choosen, needToGiveSomething, LoadNextScene, playNextTimeline, RemoveCurrentDialog, startMission.StartCurrentMision);
+            FindObjectOfType<DialogueManager>().StartDialogue(choosen, needToGiveSomething, LoadNextScene, playNextTimeline, RemoveCurrentDialog, StarMission);
         }
 
     }
@@ -89,17 +94,13 @@ public class DialogueTrigger : MonoBehaviour
     }
     private void needToGiveSomething()
     {
-        if (giveSomething && !condition)
-        {
-            condition = true;
-            inventoryUser.AddItem(itemToAdd);
-            itemToAdd = null;
-        }
+        if (typeOfCondition == typeof(FinishMissionCondition))
+            inventoryUser.AddItem(startMission.itemAfterMission);
     }
     private void LoadNextScene()
     {
         string tag = gameObject.tag;
-        if (tag == "Door" && condition)
+        if (tag == "Door")
         {
             loadScene.SetActive(true);
         }
@@ -120,5 +121,15 @@ public class DialogueTrigger : MonoBehaviour
             conditionsToCheck.RemoveAt(currentDialogIndex);
             currentDialogIndex = -1;
         }
+    }
+    private void StarMission()
+    {
+        if (canStartMission)
+        {
+            startMission.StartCurrentMision();
+            inventoryUser.AddItem(startMission.itemForMission);
+            canStartMission = false;
+        }
+
     }
 }
