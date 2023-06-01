@@ -44,7 +44,6 @@ public class PauseMenu : MonoBehaviour
     public void LoadMenu()
     {
         animator.SetTrigger("ResumeGame");
-        Debug.Log("Menu");
         Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
     }
