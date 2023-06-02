@@ -53,7 +53,6 @@ public class SetPosition : MonoBehaviour
     }
     private void OnApplicationQuit()
     {
-        Debug.Log("saved");
         PlayerPrefs.SetInt("PositionSeted", 0);
         PlayerPrefs.SetInt("SavedPlayerPositionX", Mathf.RoundToInt(player.transform.position.x));
         PlayerPrefs.SetInt("SavedPlayerPositionY", Mathf.RoundToInt(player.transform.position.y));
