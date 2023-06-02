@@ -12,7 +12,11 @@ public class SetPosition : MonoBehaviour
     private PlayerController playerContoreller;
     private Animator playerAnimator;
     private Renderer playerSprite;
-    [SerializeField] private Vector3 position;
+    public Vector3 position;
+    private void Awake()
+    {
+      
+    }
     void Start()
     {
         NameOfRegion.SetActive(showNameOfRegion);
@@ -28,7 +32,26 @@ public class SetPosition : MonoBehaviour
         playerContoreller.transitionObjectScene = fadeIn;
         if (player != null && setPositon)
         {
+            if (!PlayerPrefs.HasKey("PositionSeted"))
+            {
+                PlayerPrefs.SetInt("PositionSeted", 0);
+            }
+            if(PlayerPrefs.GetInt("PositionSeted") == 0)
+            {
+                if (PlayerPrefs.HasKey("SavedPlayerPositionX") && PlayerPrefs.HasKey("SavedPlayerPositionY"))
+                {
+                    position.x = PlayerPrefs.GetInt("SavedPlayerPositionX");
+                    position.y = PlayerPrefs.GetInt("SavedPlayerPositionY");
+                    PlayerPrefs.SetInt("PositionSeted", 1);
+                }
+            }
             player.transform.position = position;
         }
+    }
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.SetInt("PositionSeted", 0);
+        PlayerPrefs.SetInt("SavedPlayerPositionX", Mathf.RoundToInt(player.transform.position.x));
+        PlayerPrefs.SetInt("SavedPlayerPositionY", Mathf.RoundToInt(player.transform.position.y));
     }
 }
