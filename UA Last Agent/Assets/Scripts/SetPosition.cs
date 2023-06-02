@@ -15,7 +15,7 @@ public class SetPosition : MonoBehaviour
     public Vector3 position;
     private void Awake()
     {
-      
+
     }
     void Start()
     {
@@ -36,7 +36,7 @@ public class SetPosition : MonoBehaviour
             {
                 PlayerPrefs.SetInt("PositionSeted", 0);
             }
-            if(PlayerPrefs.GetInt("PositionSeted") == 0)
+            if (PlayerPrefs.GetInt("PositionSeted") == 0)
             {
                 if (PlayerPrefs.HasKey("SavedPlayerPositionX") && PlayerPrefs.HasKey("SavedPlayerPositionY"))
                 {
