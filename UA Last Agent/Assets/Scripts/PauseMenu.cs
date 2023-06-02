@@ -4,9 +4,9 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public bool GameIsPaused = false;
-    public GameObject pauseMenuUI;
-    public GameObject buttonPause;
-    public Animator animator;
+    [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] private GameObject buttonPause;
+    [SerializeField] private Animator animator;
 
 
     void Update()
@@ -51,7 +51,6 @@ public class PauseMenu : MonoBehaviour
     public void Exit()
     {
         animator.SetTrigger("ResumeGame");
-        Debug.Log("Exit");
         Application.Quit();
     }
 
