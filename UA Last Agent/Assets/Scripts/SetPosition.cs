@@ -19,7 +19,10 @@ public class SetPosition : MonoBehaviour
     }
     void Start()
     {
-        NameOfRegion.SetActive(showNameOfRegion);
+        if(NameOfRegion!= null)
+        {
+            NameOfRegion.SetActive(showNameOfRegion);
+        }
         player = GameObject.Find("Player");
         playerContoreller = player.GetComponent<PlayerController>();
         playerAnimator = player.GetComponent<Animator>();
@@ -50,6 +53,7 @@ public class SetPosition : MonoBehaviour
     }
     private void OnApplicationQuit()
     {
+        Debug.Log("saved");
         PlayerPrefs.SetInt("PositionSeted", 0);
         PlayerPrefs.SetInt("SavedPlayerPositionX", Mathf.RoundToInt(player.transform.position.x));
         PlayerPrefs.SetInt("SavedPlayerPositionY", Mathf.RoundToInt(player.transform.position.y));
