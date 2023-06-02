@@ -334,7 +334,7 @@ PrefabInstance:
         type: 3}
       propertyPath: NameOfRegion
       value: 
-      objectReference: {fileID: 855232496}
+      objectReference: {fileID: 0}
     - target: {fileID: 777258009063305862, guid: 46778f12fe3db314ebe0d7c27e339227,
         type: 3}
       propertyPath: directionPlayer
@@ -524,7 +524,7 @@ PrefabInstance:
     - target: {fileID: 8548402379668347112, guid: 46778f12fe3db314ebe0d7c27e339227,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000076293945
+      value: -0.000091552734
       objectReference: {fileID: 0}
     - target: {fileID: 9035302474275119972, guid: 46778f12fe3db314ebe0d7c27e339227,
         type: 3}
@@ -3220,12 +3220,6 @@ PrefabInstance:
 --- !u!1 &833847006 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6650265192182229355, guid: 46778f12fe3db314ebe0d7c27e339227,
-    type: 3}
-  m_PrefabInstance: {fileID: 43691592}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &855232496 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 777258009767670252, guid: 46778f12fe3db314ebe0d7c27e339227,
     type: 3}
   m_PrefabInstance: {fileID: 43691592}
   m_PrefabAsset: {fileID: 0}

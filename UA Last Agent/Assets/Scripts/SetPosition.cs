@@ -19,7 +19,10 @@ public class SetPosition : MonoBehaviour
     }
     void Start()
     {
-        NameOfRegion.SetActive(showNameOfRegion);
+        if(NameOfRegion!= null)
+        {
+            NameOfRegion.SetActive(showNameOfRegion);
+        }
         player = GameObject.Find("Player");
         playerContoreller = player.GetComponent<PlayerController>();
         playerAnimator = player.GetComponent<Animator>();
