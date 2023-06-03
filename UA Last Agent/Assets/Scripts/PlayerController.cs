@@ -1,7 +1,6 @@
 ﻿using Cainos.PixelArtTopDown_Basic;
-using UnityEngine;
 using TMPro;
-using System;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -48,7 +47,10 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Region"))
             currentColliderText.text = other.name;
         if (other.CompareTag("DoorOpen"))
+        {
+            other.GetComponent<SavePosition>()?.setPositionBeforeLoadScene();
             transitionObjectScene.SetActive(true);
+        }
 
     }
 }
