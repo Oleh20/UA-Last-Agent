@@ -9,6 +9,7 @@ TagManager:
   - Goal
   - DoorOpen
   - Region
+  - TableCraft
   layers:
   - Default
   - TransparentFX

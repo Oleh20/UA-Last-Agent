@@ -176,10 +176,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1869315837
+  m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: ec47f75fe8aff1644ac73998f4ad31b5, type: 3}
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 21300002, guid: ec47f75fe8aff1644ac73998f4ad31b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -270,8 +270,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa25856c28f08e47a66592535b2af4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartItems: []
-  InventoryItems: []
+  InventoryItems:
+    InventoryItems: []
+  letter: {fileID: 0}
 --- !u!114 &1140833372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,7 +285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc326c8bade53d46bed7edeb45ce4a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeGoal: {fileID: 0}
   inventory: {fileID: 1140833369}
   throwForce: 35
   itemForThrow: {fileID: 11400000, guid: 636bb9dd6e638734787d241896d1bad0, type: 2}
