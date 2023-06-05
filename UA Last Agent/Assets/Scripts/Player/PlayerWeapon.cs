@@ -1,19 +1,31 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System;
-using System.Collections.Generic;
 
 public class PlayerWeapon : MonoBehaviour
 {
     [SerializeField] private Item itemForCheck;
-    [SerializeField] private Weapon currentWeapon;
-    [SerializeField] private List<Weapon> availableWeapons = new List<Weapon>();
     private GameObject player;
+    private GameObject imgWeapon;
+
+    public WeaponsData availableWeapons = new WeaponsData();
+    public Weapon currentWeapon;
 
     // Start is called before the first frame update
     void Start()
     {
+        imgWeapon = GameObject.Find("Weapon");
         player = GameObject.FindGameObjectWithTag("Player");
+
+        UploadWeapon();
+
+        if (imgWeapon != null && currentWeapon == null)
+        {
+            imgWeapon.SetActive(false);
+        }
+        else
+        {
+            imgWeapon.GetComponent<Image>().sprite = currentWeapon.Icon;
+        }
     }
 
     public void UpdateWeapon()
@@ -23,13 +35,51 @@ public class PlayerWeapon : MonoBehaviour
         {
             if (inventory.HasItem(itemForCheck))
             {
-                GameObject imgWeapon = GameObject.Find("Weapon");
-                imgWeapon.GetComponent<Image>().sprite = currentWeapon.Icon;
+                if (availableWeapons.WeaponsItems.Count > 0)
+                {
+                    imgWeapon.GetComponent<Image>().sprite = availableWeapons.WeaponsItems[0].Icon;
+                    currentWeapon = availableWeapons.WeaponsItems[0];
+                    availableWeapons.WeaponsItems.RemoveAt(0);
+                    imgWeapon.SetActive(true);
+                    inventory.RemoveItem(itemForCheck);
+                    SaveWeapon();
+                }
+                else
+                {
+                    if (imgWeapon)
+                        imgWeapon.SetActive(false);
+                }
+
             }
         }
-        else
+    }
+    private void SaveWeapon()
+    {
+        string allWeapon = JsonUtility.ToJson(availableWeapons);
+        PlayerPrefs.SetString("availableWeapons", allWeapon);
+        string weapon = JsonUtility.ToJson(currentWeapon);
+        PlayerPrefs.SetString("currentWeapon", weapon);
+    }
+    private void UploadWeapon()
+    {
+        string allWeaponsJson = PlayerPrefs.GetString("availableWeapons");
+        if (!string.IsNullOrEmpty(allWeaponsJson))
         {
-            Debug.LogError("Missing inventory");
+            availableWeapons = JsonUtility.FromJson<WeaponsData>(allWeaponsJson);
         }
+
+        string currentWeaponJson = PlayerPrefs.GetString("currentWeapon");
+        if (!string.IsNullOrEmpty(currentWeaponJson))
+        {
+            if (currentWeapon == null)
+            {
+                currentWeapon = new Weapon(); 
+            }
+            JsonUtility.FromJsonOverwrite(currentWeaponJson, currentWeapon);
+        }
+    }
+    private void OnApplicationQuit()
+    {
+        SaveWeapon();
     }
 }
