@@ -1,3 +1,4 @@
+﻿using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,8 +11,7 @@ public class PlayerWeapon : MonoBehaviour
     public WeaponsData availableWeapons = new WeaponsData();
     public Weapon currentWeapon;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         imgWeapon = GameObject.Find("Weapon");
         player = GameObject.FindGameObjectWithTag("Player");
@@ -37,7 +37,7 @@ public class PlayerWeapon : MonoBehaviour
             {
                 if (availableWeapons.WeaponsItems.Count > 0)
                 {
-                    imgWeapon.GetComponent<Image>().sprite = availableWeapons.WeaponsItems[0].Icon;
+                    imgWeapon.GetComponent<Image>().sprite = Resources.Load<Sprite>(availableWeapons.WeaponsItems[0].IconPath);
                     currentWeapon = availableWeapons.WeaponsItems[0];
                     availableWeapons.WeaponsItems.RemoveAt(0);
                     imgWeapon.SetActive(true);
@@ -49,10 +49,10 @@ public class PlayerWeapon : MonoBehaviour
                     if (imgWeapon)
                         imgWeapon.SetActive(false);
                 }
-
             }
         }
     }
+
     private void SaveWeapon()
     {
         string allWeapon = JsonUtility.ToJson(availableWeapons);
@@ -60,12 +60,17 @@ public class PlayerWeapon : MonoBehaviour
         string weapon = JsonUtility.ToJson(currentWeapon);
         PlayerPrefs.SetString("currentWeapon", weapon);
     }
+
     private void UploadWeapon()
     {
         string allWeaponsJson = PlayerPrefs.GetString("availableWeapons");
         if (!string.IsNullOrEmpty(allWeaponsJson))
         {
-            availableWeapons = JsonUtility.FromJson<WeaponsData>(allWeaponsJson);
+            WeaponsData tempavailableWeapons = JsonUtility.FromJson<WeaponsData>(allWeaponsJson);
+            if (tempavailableWeapons.WeaponsItems.Count > 0)
+            {
+                availableWeapons = tempavailableWeapons;
+            }
         }
 
         string currentWeaponJson = PlayerPrefs.GetString("currentWeapon");
@@ -73,11 +78,17 @@ public class PlayerWeapon : MonoBehaviour
         {
             if (currentWeapon == null)
             {
-                currentWeapon = new Weapon(); 
+                currentWeapon = ScriptableObject.CreateInstance<Weapon>();
             }
             JsonUtility.FromJsonOverwrite(currentWeaponJson, currentWeapon);
         }
+
+        if (currentWeapon != null && !string.IsNullOrEmpty(currentWeapon.IconPath))
+        {
+            currentWeapon.Icon = Resources.Load<Sprite>(currentWeapon.IconPath);
+        }
     }
+
     private void OnApplicationQuit()
     {
         SaveWeapon();

@@ -1,69 +1,45 @@
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
-    private bool isApplicationQuitting = false;
+    private string lastSceneName; // Змінна для зберігання останньої запущеної сцени
+    private string saveFileName = "lastscene.txt"; // Назва файлу для зберігання останньої сцени
     private static GameObject gameManager;
 
     private void Awake()
     {
         gameManager = gameObject;
-        checkOnLoadScene();
-    }
-
-    private void Start()
-    {
         DontDestroyOnLoad(gameManager);
-    }
-
-    private void OnDisable()
-    {
-        SaveScene();
-    }
-
-    private void SaveScene()
-    {
-        string currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        PlayerPrefs.SetString("LastScene", currentScene);
-    }
-
-    private void LoadLastScene()
-    {
-        if (PlayerPrefs.HasKey("LastScene"))
+        // Перевіряємо, чи є збережена остання сцена
+        if (!string.IsNullOrEmpty(lastSceneName))
         {
-            string lastScene = PlayerPrefs.GetString("LastScene");
-            UnityEngine.SceneManagement.SceneManager.LoadScene(lastScene);
+            // Запускаємо збережену останню сцену
+            SceneManager.LoadScene(lastSceneName);
+        }
+        // Перевіряємо, чи є збережений файл
+        if (File.Exists(saveFileName))
+        {
+            // Зчитуємо назву сцени з файлу
+            lastSceneName = File.ReadAllText(saveFileName);
+            SceneManager.LoadScene(lastSceneName);
+        }
+        else
+        {
+            // Створюємо новий файл і записуємо в нього пусту рядок
+            File.WriteAllText(saveFileName, string.Empty);
         }
     }
 
     private void OnApplicationQuit()
     {
-        isApplicationQuitting = true;
+        // Зберігаємо назву поточної сцени перед виходом з програми
+        Scene currentScene = SceneManager.GetActiveScene();
+        lastSceneName = currentScene.name;
+
+        // Записуємо назву сцени в файл
+        File.WriteAllText(saveFileName, lastSceneName);
     }
 
-    private void OnApplicationFocus(bool hasFocus)
-    {
-        if (!hasFocus && !isApplicationQuitting)
-        {
-            PlayerPrefs.SetInt("LoadFirstTime", 1);
-        }
-    }
-
-    private void checkOnLoadScene()
-    {
-        if (PlayerPrefs.HasKey("LoadFirstTime"))
-        {
-            if (PlayerPrefs.GetInt("LoadFirstTime", 0) == 1)
-            {
-                LoadLastScene();
-                PlayerPrefs.SetInt("LoadFirstTime", 0);
-            }
-        }
-        else
-        {
-            LoadLastScene();
-            PlayerPrefs.SetInt("LoadFirstTime", 0);
-        }
-    }
 }
