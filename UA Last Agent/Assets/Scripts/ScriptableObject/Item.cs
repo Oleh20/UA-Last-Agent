@@ -5,5 +5,7 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     public string Name = "Item";
+    public string IconPath;
+    [NonSerialized]
     public Sprite Icon;
 }

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Blueprint
   m_EditorClassIdentifier: 
   Name: Blueprint
-  Icon: {fileID: 1521999807, guid: 20522009d5af8304caa7b27b40e3e997, type: 3}
+  IconPath: Blueprint

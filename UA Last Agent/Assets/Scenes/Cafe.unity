@@ -280,6 +280,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 526993715800604965, guid: 46778f12fe3db314ebe0d7c27e339227,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 6.7092896
+      objectReference: {fileID: 0}
     - target: {fileID: 777258009161974614, guid: 46778f12fe3db314ebe0d7c27e339227,
         type: 3}
       propertyPath: targetInventory
@@ -289,6 +294,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 777258010634448685, guid: 46778f12fe3db314ebe0d7c27e339227,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 777258010634448686, guid: 46778f12fe3db314ebe0d7c27e339227,
         type: 3}
@@ -394,6 +404,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548402379668347112, guid: 46778f12fe3db314ebe0d7c27e339227,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000061035156
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46778f12fe3db314ebe0d7c27e339227, type: 3}
@@ -4691,12 +4706,17 @@ PrefabInstance:
       objectReference: {fileID: 833847006}
     - target: {fileID: 1140833369, guid: ef67ba864d1ecc042b5f4cf48455c0a6, type: 3}
       propertyPath: InventoryItems.InventoryItems.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1140833369, guid: ef67ba864d1ecc042b5f4cf48455c0a6, type: 3}
       propertyPath: InventoryItems.InventoryItems.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: fe5d8f6dcb074724a8790130dfb33045,
+        type: 2}
+    - target: {fileID: 1140833369, guid: ef67ba864d1ecc042b5f4cf48455c0a6, type: 3}
+      propertyPath: InventoryItems.InventoryItems.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 636bb9dd6e638734787d241896d1bad0,
         type: 2}
     - target: {fileID: 1140833372, guid: ef67ba864d1ecc042b5f4cf48455c0a6, type: 3}
       propertyPath: transitionObjectScene
@@ -9670,9 +9690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemForCheck: {fileID: 11400000, guid: fe5d8f6dcb074724a8790130dfb33045, type: 2}
   availableWeapons:
-    WeaponsItems:
-    - {fileID: 11400000, guid: da8b57db80373c24ebf3809ec41a00db, type: 2}
-    - {fileID: 11400000, guid: 5d69919decf5f964895ee091a9e7a955, type: 2}
+    WeaponsItems: []
   currentWeapon: {fileID: 0}
 --- !u!1 &1769424372
 GameObject:

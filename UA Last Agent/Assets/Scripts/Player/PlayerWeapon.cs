@@ -1,5 +1,4 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerWeapon : MonoBehaviour
@@ -22,10 +21,7 @@ public class PlayerWeapon : MonoBehaviour
         {
             imgWeapon.SetActive(false);
         }
-        else
-        {
-            imgWeapon.GetComponent<Image>().sprite = currentWeapon.Icon;
-        }
+
     }
 
     public void UpdateWeapon()
@@ -64,28 +60,27 @@ public class PlayerWeapon : MonoBehaviour
     private void UploadWeapon()
     {
         string allWeaponsJson = PlayerPrefs.GetString("availableWeapons");
-        if (!string.IsNullOrEmpty(allWeaponsJson))
-        {
-            WeaponsData tempavailableWeapons = JsonUtility.FromJson<WeaponsData>(allWeaponsJson);
-            if (tempavailableWeapons.WeaponsItems.Count > 0)
-            {
-                availableWeapons = tempavailableWeapons;
-            }
-        }
 
+        WeaponsData tempavailableWeapons = JsonUtility.FromJson<WeaponsData>(allWeaponsJson);
+        availableWeapons = tempavailableWeapons;
         string currentWeaponJson = PlayerPrefs.GetString("currentWeapon");
-        if (!string.IsNullOrEmpty(currentWeaponJson))
+
+        if (currentWeapon == null)
         {
-            if (currentWeapon == null)
-            {
-                currentWeapon = ScriptableObject.CreateInstance<Weapon>();
-            }
-            JsonUtility.FromJsonOverwrite(currentWeaponJson, currentWeapon);
+            currentWeapon = ScriptableObject.CreateInstance<Weapon>();
         }
+        JsonUtility.FromJsonOverwrite(currentWeaponJson, currentWeapon);
+
 
         if (currentWeapon != null && !string.IsNullOrEmpty(currentWeapon.IconPath))
         {
-            currentWeapon.Icon = Resources.Load<Sprite>(currentWeapon.IconPath);
+            imgWeapon.GetComponent<Image>().sprite = Resources.Load<Sprite>(currentWeapon.IconPath);
+        }
+        else
+        {
+            currentWeapon = null;
+            if (imgWeapon)
+                imgWeapon.SetActive(false);
         }
     }
 
