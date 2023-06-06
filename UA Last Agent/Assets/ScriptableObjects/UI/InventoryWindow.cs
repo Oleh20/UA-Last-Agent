@@ -25,7 +25,7 @@ public class InventoryWindow : MonoBehaviour
         {
             var item = targetInventory.InventoryItems.InventoryItems[i];
             var icon = new GameObject("Icon");
-            icon.AddComponent<Image>().sprite = item.Icon;
+            icon.AddComponent<Image>().sprite = Resources.Load<Sprite>(item.IconPath);
             icon.transform.SetParent(itemsPanel);
 
             drawIcons.Add(icon);
