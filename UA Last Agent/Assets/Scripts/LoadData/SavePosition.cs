@@ -5,6 +5,8 @@ using UnityEngine;
 public class SavePosition : MonoBehaviour
 {
     private SetPosition setPosition;
+    [SerializeField] private float horizontal;
+    [SerializeField] private float vertical;
     [SerializeField] private Vector2 positionForSave;
     public void setPositionBeforeLoadScene()
     {
@@ -13,5 +15,11 @@ public class SavePosition : MonoBehaviour
         {
             setPosition.savePositionPlayer(positionForSave.x, positionForSave.y);
         }
+        setDirectionPlayer();
+    }
+    private void setDirectionPlayer()
+    {
+        PlayerPrefs.SetFloat("Horizontal", horizontal);
+        PlayerPrefs.SetFloat("Vertical", vertical);
     }
 }

@@ -29,7 +29,6 @@ public class SetPosition : MonoBehaviour
     public void SetDataAfterChangeScene()
     {
         playerSprite.sortingOrder = sortLevel;
-        playerAnimator.SetInteger("Direction", directionPlayer);
         playerContoreller.transitionObjectScene = fadeIn;
         if (player != null && setPositon)
         {

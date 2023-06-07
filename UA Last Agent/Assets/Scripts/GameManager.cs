@@ -1,14 +1,25 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.IO;
 
 public class GameManager : MonoBehaviour
 {
-    private string lastSceneName; 
-    private string saveFileName = "lastscene.txt"; 
+    private string lastSceneName;
+    private string saveFileName = "lastscene.txt";
     private static GameObject gameManager;
 
     private void Awake()
+    {
+        loadLastScene();
+    }
+
+    private void OnApplicationQuit()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        lastSceneName = currentScene.name;
+        File.WriteAllText(saveFileName, lastSceneName);
+    }
+    private void loadLastScene()
     {
         gameManager = gameObject;
         DontDestroyOnLoad(gameManager);
@@ -25,13 +36,6 @@ public class GameManager : MonoBehaviour
         {
             File.WriteAllText(saveFileName, string.Empty);
         }
-    }
-
-    private void OnApplicationQuit()
-    {
-        Scene currentScene = SceneManager.GetActiveScene();
-        lastSceneName = currentScene.name;
-        File.WriteAllText(saveFileName, lastSceneName);
     }
 
 }
