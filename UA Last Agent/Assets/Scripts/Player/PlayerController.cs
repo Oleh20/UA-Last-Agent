@@ -1,5 +1,4 @@
-﻿using Cainos.PixelArtTopDown_Basic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -22,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         changeGoal = GetComponent<ChangeGoal>();
+        LoadText();
     }
     private void Update()
     {
@@ -43,11 +43,22 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    public void LoadText()
+    {
+        if (currentColliderText != null)
+        {
+            string savedText = PlayerPrefs.GetString("NameRegion", "Я незнаю де я");
+            currentColliderText.text = savedText;
+        }
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Region"))
         {
             currentColliderText.text = other.name;
+            string textValue = currentColliderText.text;
+            PlayerPrefs.SetString("NameRegion", textValue);
         }
         if (other.CompareTag("TableCraft"))
         {
