@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     {
         if (currentColliderText != null)
         {
-            string savedText = PlayerPrefs.GetString("NameRegion", "Я незнаю де я");
+            string savedText = PlayerPrefs.GetString("NameRegion", "Львів");
             currentColliderText.text = savedText;
         }
     }
