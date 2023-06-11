@@ -33,7 +33,7 @@ public class DialogueManager : MonoBehaviour
         names = new Queue<string>();
         heads = new Queue<Sprite>();
     }
-
+    
     public void StartDialogue(Dialog dialog, System.Action callback = null, System.Action nextScene = null, System.Action nextTimeLine = null, System.Action removeDialog = null, System.Action startMission = null)
     {
         dialogWindow = GameObject.Find("Dialog");
@@ -47,14 +47,33 @@ public class DialogueManager : MonoBehaviour
             names.Enqueue(dialog.names[i]);
             heads.Enqueue(dialog.heads[i]);
         }
-
         DisplayNextSentences();
         dialogueCallback = callback;
         nextSceneCallback = nextScene;
         nextTimeLineCallback = nextTimeLine;
         removeDialogCallback = removeDialog;
         startMissionCallback = startMission;
+    }
 
+    private IEnumerator PrepareFontSize(string text)
+    {
+        Color color = dialogText.color;
+        color.a = 0;
+        dialogText.color = color;
+        dialogText.text = text;
+        dialogText.enableAutoSizing = true;
+        dialogText.fontSizeMin = 14;
+        dialogText.fontSizeMax = 50;
+        yield return null;
+        float autoFontSize = dialogText.fontSize;
+
+        dialogText.fontSizeMin = autoFontSize;
+        dialogText.fontSizeMax = autoFontSize;
+
+        color = dialogText.color;
+        color.a = 1;
+        dialogText.color = color;
+        dialogText.text = "";
     }
 
     public void DisplayNextSentences()
@@ -76,16 +95,17 @@ public class DialogueManager : MonoBehaviour
         string sentence = sentences.Dequeue();
         string name = names.Dequeue();
         Sprite head = heads.Dequeue();
-
-        typingCoroutine =  StartCoroutine(TypeSentence(sentence, name, head));
+        typingCoroutine = StartCoroutine(TypeSentence(sentence, name, head));
     }
 
-    IEnumerator TypeSentence(string sentence, string name, Sprite head)
+    private IEnumerator TypeSentence(string sentence, string name, Sprite head)
     {
         currentSentence = sentence;
         dialogText.text = "";
         nameText.text = name;
         headImage.sprite = head;
+
+        yield return StartCoroutine(PrepareFontSize(sentence));
 
         foreach (char letter in sentence.ToCharArray())
         {
@@ -104,5 +124,4 @@ public class DialogueManager : MonoBehaviour
         if (removeDialogCallback != null) removeDialogCallback();
         if (startMissionCallback != null) startMissionCallback();
     }
-
 }
