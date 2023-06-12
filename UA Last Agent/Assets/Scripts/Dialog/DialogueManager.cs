@@ -26,6 +26,8 @@ public class DialogueManager : MonoBehaviour
     private Coroutine typingCoroutine;
 
     private string currentSentence;
+
+    [SerializeField] private float basicSizeFont;
     
     void Start()
     {
@@ -36,6 +38,8 @@ public class DialogueManager : MonoBehaviour
     
     public void StartDialogue(Dialog dialog, System.Action callback = null, System.Action nextScene = null, System.Action nextTimeLine = null, System.Action removeDialog = null, System.Action startMission = null)
     {
+        PrepareFontSize();
+
         dialogWindow = GameObject.Find("Dialog");
         sentences.Clear();
         names.Clear();
@@ -55,25 +59,10 @@ public class DialogueManager : MonoBehaviour
         startMissionCallback = startMission;
     }
 
-    private IEnumerator PrepareFontSize(string text)
+    private void PrepareFontSize()
     {
-        Color color = dialogText.color;
-        color.a = 0;
-        dialogText.color = color;
-        dialogText.text = text;
-        dialogText.enableAutoSizing = true;
-        dialogText.fontSizeMin = 14;
-        dialogText.fontSizeMax = 50;
-        yield return null;
-        float autoFontSize = dialogText.fontSize;
-
-        dialogText.fontSizeMin = autoFontSize;
-        dialogText.fontSizeMax = autoFontSize;
-
-        color = dialogText.color;
-        color.a = 1;
-        dialogText.color = color;
-        dialogText.text = "";
+        Debug.Log(basicSizeFont *(Screen.width / 1000));
+        dialogText.fontSize = (int)basicSizeFont * (Screen.width / 1000f);
     }
 
     public void DisplayNextSentences()
@@ -104,8 +93,6 @@ public class DialogueManager : MonoBehaviour
         dialogText.text = "";
         nameText.text = name;
         headImage.sprite = head;
-
-        yield return StartCoroutine(PrepareFontSize(sentence));
 
         foreach (char letter in sentence.ToCharArray())
         {
