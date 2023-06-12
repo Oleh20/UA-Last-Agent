@@ -26,6 +26,8 @@ public class DialogueManager : MonoBehaviour
     private Coroutine typingCoroutine;
 
     private string currentSentence;
+
+    [SerializeField] private float basicSizeFont;
     
     void Start()
     {
@@ -33,9 +35,11 @@ public class DialogueManager : MonoBehaviour
         names = new Queue<string>();
         heads = new Queue<Sprite>();
     }
-
+    
     public void StartDialogue(Dialog dialog, System.Action callback = null, System.Action nextScene = null, System.Action nextTimeLine = null, System.Action removeDialog = null, System.Action startMission = null)
     {
+        PrepareFontSize();
+
         dialogWindow = GameObject.Find("Dialog");
         sentences.Clear();
         names.Clear();
@@ -47,14 +51,17 @@ public class DialogueManager : MonoBehaviour
             names.Enqueue(dialog.names[i]);
             heads.Enqueue(dialog.heads[i]);
         }
-
         DisplayNextSentences();
         dialogueCallback = callback;
         nextSceneCallback = nextScene;
         nextTimeLineCallback = nextTimeLine;
         removeDialogCallback = removeDialog;
         startMissionCallback = startMission;
+    }
 
+    private void PrepareFontSize()
+    {
+        dialogText.fontSize = (int)basicSizeFont * (Screen.width / 1000f);
     }
 
     public void DisplayNextSentences()
@@ -76,11 +83,10 @@ public class DialogueManager : MonoBehaviour
         string sentence = sentences.Dequeue();
         string name = names.Dequeue();
         Sprite head = heads.Dequeue();
-
-        typingCoroutine =  StartCoroutine(TypeSentence(sentence, name, head));
+        typingCoroutine = StartCoroutine(TypeSentence(sentence, name, head));
     }
 
-    IEnumerator TypeSentence(string sentence, string name, Sprite head)
+    private IEnumerator TypeSentence(string sentence, string name, Sprite head)
     {
         currentSentence = sentence;
         dialogText.text = "";
@@ -104,5 +110,4 @@ public class DialogueManager : MonoBehaviour
         if (removeDialogCallback != null) removeDialogCallback();
         if (startMissionCallback != null) startMissionCallback();
     }
-
 }
