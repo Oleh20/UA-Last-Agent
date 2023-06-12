@@ -61,7 +61,6 @@ public class DialogueManager : MonoBehaviour
 
     private void PrepareFontSize()
     {
-        Debug.Log(basicSizeFont *(Screen.width / 1000));
         dialogText.fontSize = (int)basicSizeFont * (Screen.width / 1000f);
     }
 
