@@ -26,6 +26,8 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Start()
     {
+        SaveDialogs();
+        LoadDialogs();
         inventoryUser = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         dialogWindow.SetActive(false);
 
@@ -61,12 +63,27 @@ public class DialogueTrigger : MonoBehaviour
         }
         return dialog;
     }
+    private void SaveDialogs()
+    {
+        string dialogsJson = JsonUtility.ToJson(dialogs);
+        string key = "Dialog_" + gameObject.name;
+        PlayerPrefs.SetString(key, dialogsJson);
+    }
+
+    private void LoadDialogs()
+    {
+        string key = "Dialog_" + gameObject.name;
+        if (PlayerPrefs.HasKey(key))
+        {
+            string dialogsJson = PlayerPrefs.GetString(key);
+            dialogs = JsonUtility.FromJson<List<Dialog>>(dialogsJson);
+        }
+    }
 
     private void TriggerDialogue()
     {
 
         Dialog choosen = CheckCurrentDialog(dialogs, conditionsToCheck);
-
         if (choosen != null)
         {
             dialogWindow.SetActive(true);
