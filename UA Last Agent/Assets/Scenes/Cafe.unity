@@ -225,6 +225,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 20.25661
       objectReference: {fileID: 0}
+    - target: {fileID: 777258009063305862, guid: 46778f12fe3db314ebe0d7c27e339227,
+        type: 3}
+      propertyPath: position.y
+      value: -2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 777258009161974614, guid: 46778f12fe3db314ebe0d7c27e339227,
         type: 3}
       propertyPath: targetInventory
@@ -1440,6 +1445,7 @@ GameObject:
   - component: {fileID: 427784624}
   - component: {fileID: 427784626}
   - component: {fileID: 427784627}
+  - component: {fileID: 427784628}
   m_Layer: 0
   m_Name: General
   m_TagString: Untagged
@@ -1560,6 +1566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb6fca3918e43340be81ad1e6b1a66d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DialogList: {fileID: 427784628}
   timeLine:
     timelineAsset: {fileID: 0}
     playableDirector: {fileID: 0}
@@ -1567,80 +1574,12 @@ MonoBehaviour:
   itemsToAdd: []
   loadScene: {fileID: 0}
   turnOffTrigger: 0
-  dialogs:
-  - names:
-    - "\u0421\u0442\u0435\u043F\u0430\u043D"
-    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
-    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
-    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
-    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
-    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
-    - "\u0421\u0442\u0435\u043F\u0430\u043D"
-    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
-    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
-    - "\u0421\u0442\u0435\u043F\u0430\u043D"
-    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
-    - "\u0421\u0442\u0435\u043F\u0430\u043D"
-    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
-    heads:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    sentences:
-    - "\u0426\u0435 \u0437 \u0432\u0430\u043C\u0438 \u044F \u043C\u0430\u0432 \u043F\u043E\u0433\u043E\u0432\u043E\u0440\u0438\u0442\u0438
-      \u043D\u0430 \u0440\u0430\u0445\u0443\u043D\u043E\u043A \u043D\u0438\u0437\u044C\u043A\u043E
-      \u043E\u043F\u043B\u0430\u0447\u0443\u0432\u0430\u043D\u043E\u0457 \u0430\u043B\u0435
-      \u043F\u0430\u0442\u0440\u0456\u043E\u0442\u0438\u0447\u043D\u043E\u0457 \u0440\u043E\u0431\u043E\u0442\u0438?"
-    - "\u0421\u043B\u0443\u0445\u0430\u0439 \u043C\u0435\u043D\u0435 \u0441\u044E\u0434\u0430
-      \u0443\u0432\u0430\u0436\u043D\u043E.. \u042F \u0446\u0435 \u0441\u043A\u0430\u0436\u0443
-      \u043B\u0438\u0448\u0435 \u043E\u0434\u0438\u043D \u0440\u0430\u0437\u2026
-      \u0413\u043A\u2026 \u0406 \u0432\u0441\u0435 \u0449\u043E \u0431\u0443\u0434\u0435
-      \u0441\u043A\u0430\u0437\u0430\u043D\u043E \u043D\u0456\u0434\u0435 \u043D\u0435
-      \u0431\u0443\u0434\u0435 \u043D\u0430\u043F\u0438\u0441\u0430\u043D\u043E\u2026
-      \u043D\u0456 \u0432 \u043A\u043D\u0438\u0436\u043A\u0430\u0445 \u043D\u0456
-      \u0432 \u043D\u043E\u0432\u0438\u043D\u0430\u0445.."
-    - "\u041D\u0430\u0441\u0442\u0430\u043B\u0438 \u0432\u0430\u0436\u043A\u0456
-      \u0447\u0430\u0441\u0438 \u0441\u0438\u043D\u043A\u0443\u2026"
-    - "\u0413\u043A\u2026 "
-    - "\u0412 \u043F\u043E\u0434\u0456\u044F\u0445 \u044F\u043A\u0456 \u0432\u0456\u0434\u0431\u0443\u0432\u0430\u044E\u0442\u044C\u0441\u044F
-      \u0410\u041D\u041E\u0422 \u043D\u0435 \u043C\u043E\u0436\u0435 \u0434\u043E\u043F\u043E\u043C\u043E\u0433\u0442\u0438.
-      \u0422\u043E\u043C\u0443 \u043C\u0435\u043D\u0456 \u043F\u043E\u0440\u0443\u0447\u0438\u043B\u0438
-      \u043D\u0430\u0439\u0442\u0438 \u043B\u044E\u0434\u0438\u043D\u0443 \u044F\u043A\u0430
-      \u0432\u0456\u0437\u044C\u043C\u0435\u0442\u0441\u044F \u0437\u0430 \u0446\u044E
-      \u0441\u043F\u0440\u0430\u0432\u0443."
-    - "\u041C\u0438 \u043F\u0440\u043E\u0447\u0438\u0442\u0430\u043B\u0438 \u0432\u0430\u0448\u0435
-      \u0434\u043E\u0441\u044C\u0454 \u0456 \u0442\u0438 \u043E\u0441\u0442\u0430\u043D\u043D\u0456\u0439
-      \u0430\u0433\u0435\u043D\u0442\u2026"
-    - "\u0411\u0435\u0437 \u0434\u043E\u0441\u0432\u0456\u0434\u0443?  \u0426\u0435
-      \u0432\u0437\u0430\u0433\u0430\u043B\u0456 \u0441\u0442\u043E\u0441\u0443\u0454\u0442\u044C\u0441\u044F
-      \u043C\u043E\u0454\u0457 \u0440\u043E\u0431\u043E\u0442\u0438?"
-    - "\u041D\u0456, \u0430\u043B\u0435 \u0446\u0435 \u0442\u0435\u0436\u2026 \u041F\u0440\u043E
-      \u0449\u043E \u044F..? \u041D\u0443, \u0442\u0438 \u0432\u0441\u0435 \u0437\u0440\u043E\u0437\u0443\u043C\u0456\u0432!"
-    - "\u0412\u0441\u0435 \u0440\u0435\u0448\u0442\u0430 \u043B\u0435\u0436\u0438\u0442\u044C
-      \u0432 \u0441\u0435\u0439\u0444\u0456."
-    - "\u0414\u0435 \u0432\u0456\u043D? \u0429\u043E \u0442\u0430\u043C? \u041D\u0430\u0432\u0456\u0449\u043E
-      \u0432\u0456\u043D \u043C\u0435\u043D\u0456?"
-    - "\u0417\u043D\u0430\u0439\u0434\u0435\u0448 \u0432\u0441\u0456 \u0432\u0456\u0434\u043F\u043E\u0432\u0456\u0434\u0456
-      \u0442\u0430\u043C!"
-    - "\u0414\u0435 \u0442\u0430\u043C?"
-    - "\u0412 \u0441\u0435\u0439\u0444\u0456!"
-  - names: []
-    heads: []
-    sentences: []
-  conditionsToCheck:
-  - {fileID: 427784624}
-  - {fileID: 427784627}
-  - {fileID: 427784624}
+  conditionsToCheck: []
+  conditionNames:
+  - NoneCondition
+  - NoneCondition
+  - FinishMissionCondition
+  conditionList: []
 --- !u!114 &427784624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1712,6 +1651,97 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endMission: 0
+--- !u!114 &427784628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427784618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b5e7da8bcabd50408ab73590bf6d955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dialog:
+  - names:
+    - "\u0421\u0442\u0435\u043F\u0430\u043D"
+    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
+    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
+    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
+    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
+    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
+    - "\u0421\u0442\u0435\u043F\u0430\u043D"
+    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
+    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
+    - "\u0421\u0442\u0435\u043F\u0430\u043D"
+    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
+    - "\u0421\u0442\u0435\u043F\u0430\u043D"
+    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
+    heads:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    sentences:
+    - "\u0426\u0435 \u0437 \u0432\u0430\u043C\u0438 \u044F \u043C\u0430\u0432 \u043F\u043E\u0433\u043E\u0432\u043E\u0440\u0438\u0442\u0438
+      \u043D\u0430 \u0440\u0430\u0445\u0443\u043D\u043E\u043A \u043D\u0438\u0437\u044C\u043A\u043E
+      \u043E\u043F\u043B\u0430\u0447\u0443\u0432\u0430\u043D\u043E\u0457 \u0430\u043B\u0435
+      \u043F\u0430\u0442\u0440\u0456\u043E\u0442\u0438\u0447\u043D\u043E\u0457 \u0440\u043E\u0431\u043E\u0442\u0438?"
+    - "\u0421\u043B\u0443\u0445\u0430\u0439 \u043C\u0435\u043D\u0435 \u0441\u044E\u0434\u0430
+      \u0443\u0432\u0430\u0436\u043D\u043E.. \u042F \u0446\u0435 \u0441\u043A\u0430\u0436\u0443
+      \u043B\u0438\u0448\u0435 \u043E\u0434\u0438\u043D \u0440\u0430\u0437\u2026
+      \u0413\u043A\u2026 \u0406 \u0432\u0441\u0435 \u0449\u043E \u0431\u0443\u0434\u0435
+      \u0441\u043A\u0430\u0437\u0430\u043D\u043E \u043D\u0456\u0434\u0435 \u043D\u0435
+      \u0431\u0443\u0434\u0435 \u043D\u0430\u043F\u0438\u0441\u0430\u043D\u043E\u2026
+      \u043D\u0456 \u0432 \u043A\u043D\u0438\u0436\u043A\u0430\u0445 \u043D\u0456
+      \u0432 \u043D\u043E\u0432\u0438\u043D\u0430\u0445.."
+    - "\u041D\u0430\u0441\u0442\u0430\u043B\u0438 \u0432\u0430\u0436\u043A\u0456
+      \u0447\u0430\u0441\u0438 \u0441\u0438\u043D\u043A\u0443\u2026"
+    - "\u0413\u043A\u2026 "
+    - "\u0412 \u043F\u043E\u0434\u0456\u044F\u0445 \u044F\u043A\u0456 \u0432\u0456\u0434\u0431\u0443\u0432\u0430\u044E\u0442\u044C\u0441\u044F
+      \u0410\u041D\u041E\u0422 \u043D\u0435 \u043C\u043E\u0436\u0435 \u0434\u043E\u043F\u043E\u043C\u043E\u0433\u0442\u0438.
+      \u0422\u043E\u043C\u0443 \u043C\u0435\u043D\u0456 \u043F\u043E\u0440\u0443\u0447\u0438\u043B\u0438
+      \u043D\u0430\u0439\u0442\u0438 \u043B\u044E\u0434\u0438\u043D\u0443 \u044F\u043A\u0430
+      \u0432\u0456\u0437\u044C\u043C\u0435\u0442\u0441\u044F \u0437\u0430 \u0446\u044E
+      \u0441\u043F\u0440\u0430\u0432\u0443."
+    - "\u041C\u0438 \u043F\u0440\u043E\u0447\u0438\u0442\u0430\u043B\u0438 \u0432\u0430\u0448\u0435
+      \u0434\u043E\u0441\u044C\u0454 \u0456 \u0442\u0438 \u043E\u0441\u0442\u0430\u043D\u043D\u0456\u0439
+      \u0430\u0433\u0435\u043D\u0442\u2026"
+    - "\u0411\u0435\u0437 \u0434\u043E\u0441\u0432\u0456\u0434\u0443?  \u0426\u0435
+      \u0432\u0437\u0430\u0433\u0430\u043B\u0456 \u0441\u0442\u043E\u0441\u0443\u0454\u0442\u044C\u0441\u044F
+      \u043C\u043E\u0454\u0457 \u0440\u043E\u0431\u043E\u0442\u0438?"
+    - "\u041D\u0456, \u0430\u043B\u0435 \u0446\u0435 \u0442\u0435\u0436\u2026 \u041F\u0440\u043E
+      \u0449\u043E \u044F..? \u041D\u0443, \u0442\u0438 \u0432\u0441\u0435 \u0437\u0440\u043E\u0437\u0443\u043C\u0456\u0432!"
+    - "\u0412\u0441\u0435 \u0440\u0435\u0448\u0442\u0430 \u043B\u0435\u0436\u0438\u0442\u044C
+      \u0432 \u0441\u0435\u0439\u0444\u0456."
+    - "\u0414\u0435 \u0432\u0456\u043D? \u0429\u043E \u0442\u0430\u043C? \u041D\u0430\u0432\u0456\u0449\u043E
+      \u0432\u0456\u043D \u043C\u0435\u043D\u0456?"
+    - "\u0417\u043D\u0430\u0439\u0434\u0435\u0448 \u0432\u0441\u0456 \u0432\u0456\u0434\u043F\u043E\u0432\u0456\u0434\u0456
+      \u0442\u0430\u043C!"
+    - "\u0414\u0435 \u0442\u0430\u043C?"
+    - "\u0412 \u0441\u0435\u0439\u0444\u0456!"
+  - names:
+    - "\u0432\u0456\u0430\u0444\u0432\u0430"
+    heads:
+    - {fileID: 0}
+    sentences:
+    - "\u0432\u0456\u0430\u0444\u0432\u0456\u0430\u0444\u0456\u0430\u0444\u0456\u0432\u0430\u0444\u0456\u0432"
+  - names:
+    - "\u0432\u0456\u0430\u0444\u0432\u0430"
+    heads:
+    - {fileID: 0}
+    sentences:
+    - "\u0432\u0456\u0430\u0444\u0432\u0456\u0430\u0444\u0456\u0430\u0444\u0456\u0432\u0430\u0444\u0456\u0432"
 --- !u!4 &444662815 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3263062237833633017, guid: a0b8c57c4261fa245913ec501f34d975,
@@ -9539,6 +9569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb6fca3918e43340be81ad1e6b1a66d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DialogList: {fileID: 0}
   timeLine:
     timelineAsset: {fileID: 0}
     playableDirector: {fileID: 0}
@@ -9546,16 +9577,10 @@ MonoBehaviour:
   itemsToAdd: []
   loadScene: {fileID: 0}
   turnOffTrigger: 0
-  dialogs:
-  - names:
-    - "\u0421\u0442\u0435\u043F\u0430\u043D"
-    heads:
-    - {fileID: 0}
-    sentences:
-    - "\u0429\u0435 \u043D\u0435 \u0447\u0430\u0441 \u0432\u0438\u0445\u043E\u0434\u0438\u0442\u0438
-      \u0437 \u0431\u0443\u0434\u0456\u0432\u043B\u0456"
   conditionsToCheck:
   - {fileID: 1701409307}
+  conditionNames: []
+  conditionList: []
 --- !u!61 &1701409309
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9883,6 +9908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb6fca3918e43340be81ad1e6b1a66d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DialogList: {fileID: 0}
   timeLine:
     timelineAsset: {fileID: 0}
     playableDirector: {fileID: 0}
@@ -9890,16 +9916,10 @@ MonoBehaviour:
   itemsToAdd: []
   loadScene: {fileID: 0}
   turnOffTrigger: 0
-  dialogs:
-  - names:
-    - "\u0421\u0442\u0435\u043F\u0430\u043D"
-    heads:
-    - {fileID: 0}
-    sentences:
-    - "\u0425\u043C\u043C, \u043C\u0435\u043D\u0456 \u044F\u0432\u043D\u043E \u0447\u043E\u0433\u043E\u0441\u044C
-      \u043D\u0435 \u0445\u0432\u0430\u0442\u0430\u0454"
   conditionsToCheck:
   - {fileID: 1831856178}
+  conditionNames: []
+  conditionList: []
 --- !u!114 &1831856180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9915,6 +9935,7 @@ MonoBehaviour:
   inventory: {fileID: 1721320613}
   itemForCheck: {fileID: 11400000, guid: fe5d8f6dcb074724a8790130dfb33045, type: 2}
   destroyWithTag: DeleteAfterCondition
+  wasDestroyed: 0
 --- !u!1 &1863204857
 GameObject:
   m_ObjectHideFlags: 0
@@ -10342,6 +10363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb6fca3918e43340be81ad1e6b1a66d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DialogList: {fileID: 0}
   timeLine:
     timelineAsset: {fileID: 0}
     playableDirector: {fileID: 0}
@@ -10349,17 +10371,10 @@ MonoBehaviour:
   itemsToAdd: []
   loadScene: {fileID: 0}
   turnOffTrigger: 0
-  dialogs:
-  - names:
-    - "\u0421\u0442\u0435\u043F\u0430\u043D"
-    heads:
-    - {fileID: 0}
-    sentences:
-    - "\u042F \u043F\u0440\u0438\u0439\u0448\u043E\u0432 \u0441\u044E\u0434\u0438
-      \u0437\u0430 \u0440\u043E\u0431\u043E\u0442\u043E\u044E \u0430 \u043D\u0435
-      \u0449\u043E\u0431 \u043F\u043E \u043A\u0430\u0444\u0435 \u0445\u043E\u0434\u0438\u0442\u0438"
   conditionsToCheck:
   - {fileID: 2005821939}
+  conditionNames: []
+  conditionList: []
 --- !u!114 &2005821939
 MonoBehaviour:
   m_ObjectHideFlags: 0

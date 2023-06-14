@@ -20,6 +20,8 @@ public class DialogueManager : MonoBehaviour
     private System.Action nextSceneCallback;
     private System.Action nextTimeLineCallback;
     private System.Action removeDialogCallback;
+    private System.Action saveDialogCallback;
+    private System.Action saveConditionsCallback;
 
     private System.Action startMissionCallback;
 
@@ -36,7 +38,7 @@ public class DialogueManager : MonoBehaviour
         heads = new Queue<Sprite>();
     }
     
-    public void StartDialogue(Dialog dialog, System.Action callback = null, System.Action nextScene = null, System.Action nextTimeLine = null, System.Action removeDialog = null, System.Action startMission = null)
+    public void StartDialogue(Dialog dialog, System.Action callback = null, System.Action nextScene = null, System.Action nextTimeLine = null, System.Action removeDialog = null, System.Action startMission = null, System.Action saveDialog = null, System.Action saveConditions = null)
     {
         PrepareFontSize();
 
@@ -57,6 +59,8 @@ public class DialogueManager : MonoBehaviour
         nextTimeLineCallback = nextTimeLine;
         removeDialogCallback = removeDialog;
         startMissionCallback = startMission;
+        saveDialogCallback = saveDialog;
+        saveConditionsCallback = saveConditions;
     }
 
     private void PrepareFontSize()
@@ -109,5 +113,7 @@ public class DialogueManager : MonoBehaviour
         if (nextTimeLineCallback != null) nextTimeLineCallback();
         if (removeDialogCallback != null) removeDialogCallback();
         if (startMissionCallback != null) startMissionCallback();
+        if (saveDialogCallback != null) saveDialogCallback();
+        if (saveConditionsCallback != null) saveConditionsCallback();
     }
 }

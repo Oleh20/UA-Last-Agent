@@ -1,6 +1,7 @@
+[System.Serializable]
 public class FinishMissionCondition : Condition
 {
-
+   
     public override bool FinishMission
     {
         get { return endMission; }
