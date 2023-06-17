@@ -6,6 +6,7 @@ public class DestroyObject : MonoBehaviour
     [SerializeField] private Item itemForCheck;
     [SerializeField] private string destroyWithTag;
     [SerializeField] private bool wasDestroyed = false;
+    [SerializeField] private FinishMissionCondition condition;
     private string key;
     void Start()
     {
@@ -22,8 +23,12 @@ public class DestroyObject : MonoBehaviour
         {
             if (inventory.HasItem(itemForCheck))
             {
+                condition.endMission = true;
                 wasDestroyed = true;
-                PlayerPrefs.SetInt(key, 1);
+                if (PlayerPrefs.GetInt("MissionFinished", 0) == 1)
+                {
+                    PlayerPrefs.SetInt(key, 1);
+                }
                 gameObject.SetActive(false);
             }
         }

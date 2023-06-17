@@ -21,7 +21,10 @@ public class ChestTriggerController : MonoBehaviour
         {
             childScript.OpenChest();
             wasOpenBefore = true;
-            PlayerPrefs.SetInt(chestKey, 1);
+            if(PlayerPrefs.GetInt("MissionFinished", 0) == 1)
+            {
+                PlayerPrefs.SetInt(chestKey, 1);
+            }
         }
 
     }

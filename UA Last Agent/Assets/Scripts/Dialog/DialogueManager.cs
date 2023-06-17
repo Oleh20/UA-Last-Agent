@@ -24,6 +24,7 @@ public class DialogueManager : MonoBehaviour
     private System.Action saveConditionsCallback;
 
     private System.Action startMissionCallback;
+    private System.Action finishMissionCallback;
 
     private Coroutine typingCoroutine;
 
@@ -38,7 +39,7 @@ public class DialogueManager : MonoBehaviour
         heads = new Queue<Sprite>();
     }
     
-    public void StartDialogue(Dialog dialog, System.Action callback = null, System.Action nextScene = null, System.Action nextTimeLine = null, System.Action removeDialog = null, System.Action startMission = null, System.Action saveDialog = null, System.Action saveConditions = null)
+    public void StartDialogue(Dialog dialog, System.Action callback = null, System.Action nextScene = null, System.Action nextTimeLine = null, System.Action removeDialog = null, System.Action startMission = null, System.Action saveDialog = null, System.Action saveConditions = null, System.Action finishMission = null)
     {
         PrepareFontSize();
 
@@ -61,6 +62,7 @@ public class DialogueManager : MonoBehaviour
         startMissionCallback = startMission;
         saveDialogCallback = saveDialog;
         saveConditionsCallback = saveConditions;
+        finishMissionCallback = finishMission;
     }
 
     private void PrepareFontSize()
@@ -115,5 +117,6 @@ public class DialogueManager : MonoBehaviour
         if (startMissionCallback != null) startMissionCallback();
         if (saveDialogCallback != null) saveDialogCallback();
         if (saveConditionsCallback != null) saveConditionsCallback();
+        if (finishMissionCallback!= null) finishMissionCallback();
     }
 }

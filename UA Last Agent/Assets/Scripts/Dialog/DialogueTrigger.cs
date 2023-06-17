@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
-using UnityEngine.Windows;
 
 public class DialogueTrigger : MonoBehaviour
 {
+    [SerializeField] private SetPosition setPosition;
     public ListDialogItems DialogList = new ListDialogItems();
     private DialogData dialogData = new DialogData();
     private List<Dialog> dialogs;
@@ -25,7 +25,10 @@ public class DialogueTrigger : MonoBehaviour
     private Inventory inventoryUser;
     private Type typeOfCondition;
     private bool canStartMission;
+    private bool canFinsihMission;
     private bool canSave;
+
+    private Mission nameMission;
     private void Start()
     {
         inventoryUser = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
@@ -41,6 +44,14 @@ public class DialogueTrigger : MonoBehaviour
             canSave = true;
             if (conditionsToCheck[i].CheckCondition())
             {
+                if (conditionsToCheck[i].GetType() == typeof(FinishMissionCondition))
+                {
+                    nameMission = gameObject.GetComponent<StartMission>().mission;
+                    if (nameMission.gameObject.name.Length > 0)
+                    {
+                        canFinsihMission= true;
+                    }
+                }
                 typeOfCondition = conditionsToCheck[0].GetType();
                 currentDialogIndex = i;
                 RemoveCurrentDialog();
@@ -72,6 +83,7 @@ public class DialogueTrigger : MonoBehaviour
         }
 
     }
+
     private void SaveConditions()
     {
         if (canSave)
@@ -104,9 +116,27 @@ public class DialogueTrigger : MonoBehaviour
         if (PlayerPrefs.HasKey(key))
         {
             string conditionNamesString = PlayerPrefs.GetString(key);
-            string[] conditionNamesArray = conditionNamesString.Split(',');
-            conditionNames = new List<string>(conditionNamesArray);
+            if (conditionNamesString.Length > 1)
+            {
+                string[] conditionNamesArray = conditionNamesString.Split(',');
+                conditionNames = new List<string>(conditionNamesArray);
+            }
         }
+        if (PlayerPrefs.HasKey(key))
+        {
+            string conditionNamesString = PlayerPrefs.GetString(key);
+            if (conditionNamesString.Length > 1)
+            {
+                updateConditions();
+            }
+        }
+        else
+        {
+            updateConditions();
+        }
+    }
+    private void updateConditions()
+    {
         foreach (string conditionName in conditionNames)
         {
             var script = GetComponent(conditionName) as MonoBehaviour;
@@ -143,7 +173,7 @@ public class DialogueTrigger : MonoBehaviour
         if (choosen != null)
         {
             dialogWindow.SetActive(true);
-            FindObjectOfType<DialogueManager>().StartDialogue(choosen, needToGiveSomething, LoadNextScene, playNextTimeline, RemoveCurrentDialog, StarMission, SaveDialogs, SaveConditions);
+            FindObjectOfType<DialogueManager>().StartDialogue(choosen, needToGiveSomething, LoadNextScene, playNextTimeline, RemoveCurrentDialog, StarMission, SaveDialogs, SaveConditions, finishMission);
         }
 
     }
@@ -190,6 +220,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (currentDialogIndex != -1)
         {
+            conditionNames.RemoveAt(currentDialogIndex);
             dialogs.RemoveAt(currentDialogIndex);
             conditionsToCheck.RemoveAt(currentDialogIndex);
             currentDialogIndex = -1;
@@ -199,10 +230,21 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (canStartMission)
         {
+            PlayerPrefs.SetInt("MissionFinished", 0);
+            setPosition.getAndSavePositionPlayer();
             startMission.StartCurrentMision();
             inventoryUser.AddItem(startMission.itemForMission);
             canStartMission = false;
         }
 
+    }
+    private void finishMission()
+    {
+        if(canFinsihMission)
+        {
+            PlayerPrefs.SetInt("MissionFinished", 1);
+            nameMission.EndMission(startMission);
+            PlayerPrefs.SetInt(nameMission.gameObject.name + "_Finished", 1);
+        }
     }
 }

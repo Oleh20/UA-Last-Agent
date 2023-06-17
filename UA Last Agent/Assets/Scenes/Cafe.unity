@@ -215,6 +215,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.49996948
       objectReference: {fileID: 0}
+    - target: {fileID: 144231546217218877, guid: 46778f12fe3db314ebe0d7c27e339227,
+        type: 3}
+      propertyPath: numberOfScene
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 526993715800604965, guid: 46778f12fe3db314ebe0d7c27e339227,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -716,7 +721,7 @@ GameObject:
   - component: {fileID: 131909439}
   m_Layer: 0
   m_Name: MainDoor
-  m_TagString: Untagged
+  m_TagString: DeleteAfterMission
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1446,6 +1451,7 @@ GameObject:
   - component: {fileID: 427784626}
   - component: {fileID: 427784627}
   - component: {fileID: 427784628}
+  - component: {fileID: 427784629}
   m_Layer: 0
   m_Name: General
   m_TagString: Untagged
@@ -1566,6 +1572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb6fca3918e43340be81ad1e6b1a66d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setPosition: {fileID: 1118785075}
   DialogList: {fileID: 427784628}
   timeLine:
     timelineAsset: {fileID: 0}
@@ -1574,12 +1581,20 @@ MonoBehaviour:
   itemsToAdd: []
   loadScene: {fileID: 0}
   turnOffTrigger: 0
-  conditionsToCheck: []
   conditionNames:
   - NoneCondition
-  - NoneCondition
   - FinishMissionCondition
-  conditionList: []
+  - NoneCondition
+  - NoneCondition
+  - NoneCondition
+  - NoneCondition
+  - NoneCondition
+  - NoneCondition
+  - NoneCondition
+  - NoneCondition
+  - NoneCondition
+  - NoneCondition
+  - DontScip
 --- !u!114 &427784624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1731,17 +1746,106 @@ MonoBehaviour:
     - "\u0414\u0435 \u0442\u0430\u043C?"
     - "\u0412 \u0441\u0435\u0439\u0444\u0456!"
   - names:
-    - "\u0432\u0456\u0430\u0444\u0432\u0430"
+    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
     heads:
     - {fileID: 0}
     sentences:
-    - "\u0432\u0456\u0430\u0444\u0432\u0456\u0430\u0444\u0456\u0430\u0444\u0456\u0432\u0430\u0444\u0456\u0432"
+    - "\u0429\u043E\u0441\u044C \u044F \u043D\u0435 \u0431\u0430\u0447\u0443 \u043D\u0430\u0448\u043E\u0433\u043E
+      \u0441\u0443\u0447\u0430\u0441\u043D\u043E\u0433\u043E \u043E\u0431\u043B\u0430\u0434\u043D\u0430\u043D\u043D\u044F
+      \u043F\u0440\u0438 \u0442\u043E\u0431\u0456"
   - names:
-    - "\u0432\u0456\u0430\u0444\u0432\u0430"
+    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
     heads:
     - {fileID: 0}
     sentences:
-    - "\u0432\u0456\u0430\u0444\u0432\u0456\u0430\u0444\u0456\u0430\u0444\u0456\u0432\u0430\u0444\u0456\u0432"
+    - "\u0406\u043D\u0448\u0430 \u0441\u043F\u0440\u0430\u0432\u0430, \u0449\u043E
+      \u0436, \u0446\u0435 \u0432\u0441\u0435 \u0449\u043E \u044F \u0442\u043E\u0431\u0456
+      \u0431\u0443\u0432 \u043F\u043E\u0432\u0438\u043D\u0435\u043D \u0434\u0430\u0442\u0438,
+      \u043C\u043E\u0436\u0435\u0448 \u0456\u0442\u0438 \u0434\u0430\u043B\u0456
+      \u0448\u0443\u043A\u0430\u0442\u0438 \u043F\u0440\u0438\u0433\u043E\u0434\u0438"
+  - names:
+    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
+    heads:
+    - {fileID: 0}
+    sentences:
+    - "\u041B\u044C\u0432\u0456\u0432\u0441\u044C\u043A\u0435 \u0445\u043E\u0440\u043E\u0448\u0435
+      \u043F\u0438\u0432\u043E!"
+  - names:
+    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
+    heads:
+    - {fileID: 0}
+    sentences:
+    - "\u0422\u0438 \u0432\u0436\u0435 \u0432\u0440\u044F\u0442\u0443\u0432\u0430\u0432
+      \u0441\u0432\u0456\u0442 \u0447\u0438 \u0440\u043E\u0431\u0438\u0448 \u043F\u0430\u0443\u0437\u0443?"
+  - names:
+    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
+    heads:
+    - {fileID: 0}
+    sentences:
+    - "\u0422\u0438 \u0442\u0443\u0442 \u043F\u0440\u043E\u0431\u0443\u0432\u0430\u0432
+      \u0434\u0435\u0440\u0443\u043D\u0438?\r\n"
+  - names:
+    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
+    heads:
+    - {fileID: 0}
+    sentences:
+    - "\u0429\u043E \u0446\u0435 \u0437\u043D\u043E\u0432 \u0442\u0438? \u044F \u0434\u0443\u043C\u0430\u0432
+      \u041E\u043B\u0435\u0433 \u043F\u0440\u0438\u0439\u0448\u043E\u0432!\n"
+  - names:
+    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
+    heads:
+    - {fileID: 0}
+    sentences:
+    - "\u0429\u043E \u0446\u0435 \u0437\u043D\u043E\u0432 \u0442\u0438? \u042F \u0434\u0443\u043C\u0430\u0432
+      \u041E\u043B\u0435\u0433 \u043F\u0440\u0438\u0439\u0448\u043E\u0432!\n"
+  - names:
+    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
+    heads:
+    - {fileID: 0}
+    sentences:
+    - "\u0414\u0435 \u0432\u0441\u0456 \u0440\u0435\u0448\u0442\u0430 \u043B\u044E\u0434\u0438?
+      \u0407\u0445 \u0437\u0430\u0431\u0443\u043B\u0438 \u043D\u0430\u043C\u0430\u043B\u044E\u0432\u0430\u0442\u0438?
+      \u0427\u0438 \u043D\u0435 \u0445\u0432\u0430\u0442\u0438\u043B\u043E \u0431\u044E\u0434\u0436\u0435\u0442\u0443?\r\n\n"
+  - names:
+    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
+    heads:
+    - {fileID: 0}
+    sentences:
+    - "\u042F\u043A \u0442\u043E\u0431\u0456 \u043F\u0435\u0447\u0435\u043D\u043D\u044F
+      \u043F\u043E \u0414\u0440\u043E\u0433\u043E\u0431\u0438\u0446\u044C\u043A\u0435?\n"
+  - names:
+    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
+    heads:
+    - {fileID: 0}
+    sentences:
+    - "\u0411\u043E\u0440\u0449 \u0447\u0438 \u041E\u043A\u0440\u043E\u0448\u043A\u0430?"
+  - names:
+    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
+    heads:
+    - {fileID: 0}
+    sentences:
+    - "\u0411\u043E\u0440\u0449 \u0447\u0438 \u041E\u043A\u0440\u043E\u0448\u043A\u0430?"
+  - names:
+    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
+    heads:
+    - {fileID: 0}
+    sentences:
+    - "\u0411\u0443\u0434\u0435\u0448 \u043F\u0440\u043E\u0445\u043E\u0434\u0438\u0442\u0438
+      \u043C\u0438\u043C\u043E - \u043A\u0440\u0430\u0449\u0435 \u043F\u0440\u043E\u0445\u043E\u0434\u0438
+      \u043C\u0438\u043C\u043E."
+--- !u!114 &427784629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427784618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e74cc17d4ecd50408c0fecdff55ebfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deleteAfter: 0
 --- !u!4 &444662815 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3263062237833633017, guid: a0b8c57c4261fa245913ec501f34d975,
@@ -4761,7 +4865,7 @@ PrefabInstance:
       objectReference: {fileID: 833847006}
     - target: {fileID: 1140833369, guid: ef67ba864d1ecc042b5f4cf48455c0a6, type: 3}
       propertyPath: InventoryItems.InventoryItems.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1140833369, guid: ef67ba864d1ecc042b5f4cf48455c0a6, type: 3}
       propertyPath: InventoryItems.InventoryItems.Array.data[0]
@@ -5061,6 +5165,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1100035122}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1118785075 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 777258009063305862, guid: 46778f12fe3db314ebe0d7c27e339227,
+    type: 3}
+  m_PrefabInstance: {fileID: 43691592}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6318cc83c103604f81d43c1b64089e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1132883317 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3400134589010881359, guid: 4946599d75e3aa54a993f27e34a791a0,
@@ -9522,9 +9638,10 @@ GameObject:
   - component: {fileID: 1701409309}
   - component: {fileID: 1701409308}
   - component: {fileID: 1701409307}
+  - component: {fileID: 1701409310}
   m_Layer: 0
   m_Name: MainDoorDialog
-  m_TagString: Untagged
+  m_TagString: DeleteAfterMission
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9569,7 +9686,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb6fca3918e43340be81ad1e6b1a66d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialogList: {fileID: 0}
+  setPosition: {fileID: 0}
+  DialogList: {fileID: 1701409310}
   timeLine:
     timelineAsset: {fileID: 0}
     playableDirector: {fileID: 0}
@@ -9577,10 +9695,8 @@ MonoBehaviour:
   itemsToAdd: []
   loadScene: {fileID: 0}
   turnOffTrigger: 0
-  conditionsToCheck:
-  - {fileID: 1701409307}
-  conditionNames: []
-  conditionList: []
+  conditionNames:
+  - NoneCondition
 --- !u!61 &1701409309
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9607,6 +9723,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.73759735, y: 0.32457042}
   m_EdgeRadius: 0
+--- !u!114 &1701409310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701409305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b5e7da8bcabd50408ab73590bf6d955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dialog:
+  - names:
+    - "\u0421\u0442\u0435\u043F\u0430\u043D"
+    heads:
+    - {fileID: 0}
+    sentences:
+    - "\u0429\u0435 \u043D\u0435 \u0447\u0430\u0441, \u0442\u0440\u0435\u0431\u0430
+      \u0441\u043F\u0435\u0440\u0448\u0443 \u0442\u0443\u0442 \u0437\u0430\u043A\u0456\u043D\u0447\u0438\u0442\u0438
+      \u0432\u0441\u0456 \u0441\u043F\u0440\u0430\u0432\u0438"
 --- !u!1 &1707764841
 GameObject:
   m_ObjectHideFlags: 0
@@ -9699,6 +9836,7 @@ MonoBehaviour:
   availableWeapons:
     WeaponsItems:
     - {fileID: 11400000, guid: 5d69919decf5f964895ee091a9e7a955, type: 2}
+    - {fileID: 11400000, guid: da8b57db80373c24ebf3809ec41a00db, type: 2}
   currentWeapon: {fileID: 0}
 --- !u!1 &1769424372
 GameObject:
@@ -9779,7 +9917,7 @@ GameObject:
   - component: {fileID: 1789775329}
   - component: {fileID: 1789775328}
   m_Layer: 0
-  m_Name: Mission
+  m_Name: MissionInCafe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9801,6 +9939,8 @@ MonoBehaviour:
   - {fileID: 1707764841}
   - {fileID: 2005821935}
   - {fileID: 131909437}
+  nameMission: "\u0412\u0441\u0435 \u0437\u0430\u043A\u0456\u043D\u0447\u0438\u043D\u043E"
+  additionalText: "\u041C\u043E\u0436\u043D\u0430 \u0432\u0456\u0434\u043F\u043E\u0447\u0438\u0432\u0430\u0442\u0438"
 --- !u!4 &1789775329
 Transform:
   m_ObjectHideFlags: 0
@@ -9835,6 +9975,7 @@ GameObject:
   - component: {fileID: 1831856179}
   - component: {fileID: 1831856178}
   - component: {fileID: 1831856180}
+  - component: {fileID: 1831856181}
   m_Layer: 0
   m_Name: TableTrigger
   m_TagString: DeleteAfterCondition
@@ -9870,7 +10011,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.29735756, y: -0.00000011920929}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -9881,7 +10022,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.8745804, y: 2.2593954}
   m_EdgeRadius: 0
 --- !u!114 &1831856178
 MonoBehaviour:
@@ -9908,7 +10049,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb6fca3918e43340be81ad1e6b1a66d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialogList: {fileID: 0}
+  setPosition: {fileID: 0}
+  DialogList: {fileID: 1831856181}
   timeLine:
     timelineAsset: {fileID: 0}
     playableDirector: {fileID: 0}
@@ -9916,10 +10058,8 @@ MonoBehaviour:
   itemsToAdd: []
   loadScene: {fileID: 0}
   turnOffTrigger: 0
-  conditionsToCheck:
-  - {fileID: 1831856178}
-  conditionNames: []
-  conditionList: []
+  conditionNames:
+  - NoneCondition
 --- !u!114 &1831856180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9936,6 +10076,29 @@ MonoBehaviour:
   itemForCheck: {fileID: 11400000, guid: fe5d8f6dcb074724a8790130dfb33045, type: 2}
   destroyWithTag: DeleteAfterCondition
   wasDestroyed: 0
+  condition: {fileID: 427784627}
+--- !u!114 &1831856181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831856175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b5e7da8bcabd50408ab73590bf6d955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dialog:
+  - names:
+    - "\u0421\u0442\u0435\u043F\u0430\u043D"
+    heads:
+    - {fileID: 0}
+    sentences:
+    - "\u0426\u0456\u043A\u0430\u0432\u0430 \u0440\u0456\u0447, \u0449\u043E\u0441\u044C
+      \u043C\u0435\u043D\u0456 \u0446\u0435 \u043D\u0430\u0433\u0430\u0434\u0443\u0454
+      \u0441\u0442\u0456\u043B \u0434\u043B\u044F \u043A\u0440\u0430\u0444\u0442\u0438\u043D\u0433\u0443
+      \u0437 \u043C\u0430\u0439\u043D\u043A\u0440\u0430\u0444\u0442\u0443"
 --- !u!1 &1863204857
 GameObject:
   m_ObjectHideFlags: 0
@@ -10303,6 +10466,7 @@ GameObject:
   - component: {fileID: 2005821937}
   - component: {fileID: 2005821938}
   - component: {fileID: 2005821939}
+  - component: {fileID: 2005821940}
   m_Layer: 0
   m_Name: DoorInSecondRoomDialog
   m_TagString: OffInMission
@@ -10363,7 +10527,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb6fca3918e43340be81ad1e6b1a66d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialogList: {fileID: 0}
+  setPosition: {fileID: 0}
+  DialogList: {fileID: 2005821940}
   timeLine:
     timelineAsset: {fileID: 0}
     playableDirector: {fileID: 0}
@@ -10371,10 +10536,8 @@ MonoBehaviour:
   itemsToAdd: []
   loadScene: {fileID: 0}
   turnOffTrigger: 0
-  conditionsToCheck:
-  - {fileID: 2005821939}
-  conditionNames: []
-  conditionList: []
+  conditionNames:
+  - NoneCondition
 --- !u!114 &2005821939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10388,6 +10551,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deleteAfter: 0
+--- !u!114 &2005821940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005821935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b5e7da8bcabd50408ab73590bf6d955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dialog:
+  - names:
+    - "\u0421\u0442\u0435\u043F\u0430\u043D"
+    heads:
+    - {fileID: 0}
+    sentences:
+    - "\u042F \u043F\u0440\u0438\u0439\u0448\u043E\u0432 \u0441\u044E\u0434\u0438
+      \u0437\u0430 \u0440\u043E\u0431\u043E\u0442\u043E\u044E, \u0430 \u043D\u0435
+      \u0449\u043E\u0431 \u043F\u043E \u043A\u0430\u0444\u0435 \u0440\u043E\u0437\u0433\u0443\u043B\u044E\u0432\u0430\u0442\u0438"
 --- !u!1 &2018830669
 GameObject:
   m_ObjectHideFlags: 0
