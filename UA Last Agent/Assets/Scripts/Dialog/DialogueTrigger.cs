@@ -17,7 +17,7 @@ public class DialogueTrigger : MonoBehaviour
 
     [SerializeField] private bool turnOffTrigger;
 
-    private List<Condition> conditionsToCheck;
+    [SerializeField] private List<Condition> conditionsToCheck;
 
     public List<string> conditionNames;
 
@@ -111,7 +111,7 @@ public class DialogueTrigger : MonoBehaviour
     }
     private void LoadConditions()
     {
-        conditionsToCheck.Clear();
+        conditionsToCheck?.Clear();
         string key = "Conditions_" + gameObject.name;
         if (PlayerPrefs.HasKey(key))
         {
