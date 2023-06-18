@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     private void SaveLastScene()
     {
+      
         Scene currentScene = SceneManager.GetActiveScene();
         lastSceneName = currentScene.name;
         File.WriteAllText(saveFileName, lastSceneName);
@@ -40,5 +41,10 @@ public class GameManager : MonoBehaviour
             lastSceneName = File.ReadAllText(saveFileName);
             SceneManager.LoadScene(lastSceneName);
         }
+    }
+
+    private void OnDestroy()
+    {
+        SaveLastScene();
     }
 }

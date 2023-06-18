@@ -30,6 +30,7 @@ public class MissionCafe : Mission
     }
     public override void EndMission(StartMission gameObject, string name, string main)
     {
+        PlayerPrefs.SetInt("MissionFinished", 1);
         base.EndMission(gameObject, nameMission, additionalText);
         PlayerPrefs.SetInt("Chest_SafeInCafe", 1);
         PlayerPrefs.SetInt("Destroy_TableTrigger", 1);

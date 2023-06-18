@@ -16,7 +16,7 @@ public class SetPosition : MonoBehaviour
 
     void Start()
     {
-        PlayerPrefs.SetInt("MissionFinished", 1);
+        
         if (NameOfRegion != null)
         {
             NameOfRegion.SetActive(showNameOfRegion);
@@ -53,6 +53,28 @@ public class SetPosition : MonoBehaviour
     }
     private void OnApplicationQuit()
     {
+        SavePositionData();
+
+    }
+    public void savePositionPlayer(float x, float y)
+    {
+        PlayerPrefs.SetInt("SavedPlayerPositionX", Mathf.RoundToInt(x));
+        PlayerPrefs.SetInt("SavedPlayerPositionY", Mathf.RoundToInt(y));
+    }
+    public void getAndSavePositionPlayer()
+    {
+        PlayerPrefs.SetInt("MissionFinished", 1);
+        PlayerPrefs.SetInt("SavedPlayerPositionX", Mathf.RoundToInt(player.transform.position.x));
+        PlayerPrefs.SetInt("SavedPlayerPositionY", Mathf.RoundToInt(player.transform.position.y));
+    }
+    private void setPositionPlayer()
+    {
+        position.x = PlayerPrefs.GetInt("SavedPlayerPositionX");
+        position.y = PlayerPrefs.GetInt("SavedPlayerPositionY");
+    }
+
+    public void SavePositionData()
+    {
         if (!PlayerPrefs.HasKey("MissionFinished"))
         {
             PlayerPrefs.SetInt("PositionSeted", 0);
@@ -67,19 +89,5 @@ public class SetPosition : MonoBehaviour
             }
         }
     }
-    public void savePositionPlayer(float x, float y)
-    {
-        PlayerPrefs.SetInt("SavedPlayerPositionX", Mathf.RoundToInt(x));
-        PlayerPrefs.SetInt("SavedPlayerPositionY", Mathf.RoundToInt(y));
-    }
-    public void getAndSavePositionPlayer()
-    {
-        PlayerPrefs.SetInt("SavedPlayerPositionX", Mathf.RoundToInt(player.transform.position.x));
-        PlayerPrefs.SetInt("SavedPlayerPositionY", Mathf.RoundToInt(player.transform.position.y));
-    }
-    private void setPositionPlayer()
-    {
-        position.x = PlayerPrefs.GetInt("SavedPlayerPositionX");
-        position.y = PlayerPrefs.GetInt("SavedPlayerPositionY");
-    }
+   
 }
