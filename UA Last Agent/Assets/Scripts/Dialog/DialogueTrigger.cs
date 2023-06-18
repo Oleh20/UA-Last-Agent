@@ -245,6 +245,7 @@ public class DialogueTrigger : MonoBehaviour
             PlayerPrefs.SetInt("MissionFinished", 1);
             nameMission.EndMission(startMission);
             PlayerPrefs.SetInt(nameMission.gameObject.name + "_Finished", 1);
+            canFinsihMission= false;
         }
     }
 }

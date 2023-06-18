@@ -11,12 +11,8 @@ public class MissionCafe : Mission
         if (CheckIsMissionFinished(gameObject.name))
         {
             LogicMission();
-        }
-        if (PlayerPrefs.GetInt(gameObject.name + "Finished", 0) == 1)
-        {
             offObjects();
         }
-
     }
     public override void LogicMission()
     {
@@ -38,7 +34,6 @@ public class MissionCafe : Mission
         PlayerPrefs.SetInt("Chest_SafeInCafe", 1);
         PlayerPrefs.SetInt("Destroy_TableTrigger", 1);
         offObjects();
-        PlayerPrefs.SetInt(gameObject.name + "Finished", 1);
     }
     public void offObjects()
     {
