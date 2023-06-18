@@ -1,5 +1,5 @@
 public interface IMission
 {
     void LogicMission();
-    void EndMission();
+    void EndMission(StartMission mission, string name = null, string main = null);
 }

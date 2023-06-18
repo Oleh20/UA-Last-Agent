@@ -1,4 +1,3 @@
-using Unity.Mathematics;
 using UnityEngine;
 
 public class SetPosition : MonoBehaviour
@@ -14,10 +13,11 @@ public class SetPosition : MonoBehaviour
     private Animator playerAnimator;
     private Renderer playerSprite;
     public Vector3 position;
- 
+
     void Start()
     {
-        if(NameOfRegion!= null)
+        PlayerPrefs.SetInt("MissionFinished", 1);
+        if (NameOfRegion != null)
         {
             NameOfRegion.SetActive(showNameOfRegion);
         }
@@ -53,13 +53,29 @@ public class SetPosition : MonoBehaviour
     }
     private void OnApplicationQuit()
     {
-        PlayerPrefs.SetInt("PositionSeted", 0);
-        savePositionPlayer(player.transform.position.x, player.transform.position.y);
+        if (!PlayerPrefs.HasKey("MissionFinished"))
+        {
+            PlayerPrefs.SetInt("PositionSeted", 0);
+            savePositionPlayer(player.transform.position.x, player.transform.position.y);
+        }
+        else
+        {
+            if (PlayerPrefs.GetInt("MissionFinished", 0) == 1)
+            {
+                PlayerPrefs.SetInt("PositionSeted", 0);
+                savePositionPlayer(player.transform.position.x, player.transform.position.y);
+            }
+        }
     }
     public void savePositionPlayer(float x, float y)
     {
         PlayerPrefs.SetInt("SavedPlayerPositionX", Mathf.RoundToInt(x));
         PlayerPrefs.SetInt("SavedPlayerPositionY", Mathf.RoundToInt(y));
+    }
+    public void getAndSavePositionPlayer()
+    {
+        PlayerPrefs.SetInt("SavedPlayerPositionX", Mathf.RoundToInt(player.transform.position.x));
+        PlayerPrefs.SetInt("SavedPlayerPositionY", Mathf.RoundToInt(player.transform.position.y));
     }
     private void setPositionPlayer()
     {
