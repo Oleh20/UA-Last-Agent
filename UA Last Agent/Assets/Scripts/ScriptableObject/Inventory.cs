@@ -26,7 +26,6 @@ public class Inventory : MonoBehaviour
         {
             InventoryItems.InventoryItems.Add(item);
             OnItemChange?.Invoke(item);
-            SaveInventory();
         }
         else if (item != null && item.name == "List")
         {
@@ -44,12 +43,14 @@ public class Inventory : MonoBehaviour
     {
         InventoryItems.InventoryItems.Remove(item);
         OnItemChange?.Invoke(item);
-        SaveInventory();
     }
 
     private void OnApplicationQuit()
     {
-        SaveInventory();
+        if (PlayerPrefs.GetInt("MissionFinished", 0) == 1)
+        {
+            SaveInventory();
+        }
     }
 
     private void SaveInventory()

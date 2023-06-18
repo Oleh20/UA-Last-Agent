@@ -1,5 +1,5 @@
 using UnityEngine;
-
+[System.Serializable]
 public class Condition : MonoBehaviour
 {
     public virtual bool DeleteAfter { get; set; }

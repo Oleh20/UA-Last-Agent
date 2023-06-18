@@ -10,6 +10,9 @@ TagManager:
   - DoorOpen
   - Region
   - TableCraft
+  - OffInMission
+  - DeleteAfterCondition
+  - DeleteAfterMission
   layers:
   - Default
   - TransparentFX

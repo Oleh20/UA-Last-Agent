@@ -31,14 +31,13 @@ public class PlayerWeapon : MonoBehaviour
         {
             if (inventory.HasItem(itemForCheck))
             {
-                if (availableWeapons.WeaponsItems.Count > 0)
+                if (availableWeapons?.WeaponsItems.Count > 0)
                 {
                     imgWeapon.GetComponent<Image>().sprite = Resources.Load<Sprite>(availableWeapons.WeaponsItems[0].IconPath);
                     currentWeapon = availableWeapons.WeaponsItems[0];
                     availableWeapons.WeaponsItems.RemoveAt(0);
                     imgWeapon.SetActive(true);
                     inventory.RemoveItem(itemForCheck);
-                    SaveWeapon();
                 }
                 else
                 {
@@ -62,7 +61,10 @@ public class PlayerWeapon : MonoBehaviour
         string allWeaponsJson = PlayerPrefs.GetString("availableWeapons");
 
         WeaponsData tempavailableWeapons = JsonUtility.FromJson<WeaponsData>(allWeaponsJson);
-        availableWeapons = tempavailableWeapons;
+        if(tempavailableWeapons?.WeaponsItems.Count > 0)
+        {
+            availableWeapons = tempavailableWeapons;
+        }
         string currentWeaponJson = PlayerPrefs.GetString("currentWeapon");
 
         if (currentWeapon == null)
@@ -86,6 +88,9 @@ public class PlayerWeapon : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        SaveWeapon();
+        if (PlayerPrefs.GetInt("MissionFinished", 0) == 1)
+        {
+            SaveWeapon();
+        }
     }
 }
