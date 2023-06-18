@@ -1581,11 +1581,10 @@ MonoBehaviour:
   itemsToAdd: []
   loadScene: {fileID: 0}
   turnOffTrigger: 0
+  conditionsToCheck: []
   conditionNames:
   - NoneCondition
   - FinishMissionCondition
-  - NoneCondition
-  - NoneCondition
   - NoneCondition
   - NoneCondition
   - NoneCondition
@@ -1796,13 +1795,6 @@ MonoBehaviour:
     heads:
     - {fileID: 0}
     sentences:
-    - "\u0429\u043E \u0446\u0435 \u0437\u043D\u043E\u0432 \u0442\u0438? \u042F \u0434\u0443\u043C\u0430\u0432
-      \u041E\u043B\u0435\u0433 \u043F\u0440\u0438\u0439\u0448\u043E\u0432!\n"
-  - names:
-    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
-    heads:
-    - {fileID: 0}
-    sentences:
     - "\u0414\u0435 \u0432\u0441\u0456 \u0440\u0435\u0448\u0442\u0430 \u043B\u044E\u0434\u0438?
       \u0407\u0445 \u0437\u0430\u0431\u0443\u043B\u0438 \u043D\u0430\u043C\u0430\u043B\u044E\u0432\u0430\u0442\u0438?
       \u0427\u0438 \u043D\u0435 \u0445\u0432\u0430\u0442\u0438\u043B\u043E \u0431\u044E\u0434\u0436\u0435\u0442\u0443?\r\n\n"
@@ -1813,12 +1805,6 @@ MonoBehaviour:
     sentences:
     - "\u042F\u043A \u0442\u043E\u0431\u0456 \u043F\u0435\u0447\u0435\u043D\u043D\u044F
       \u043F\u043E \u0414\u0440\u043E\u0433\u043E\u0431\u0438\u0446\u044C\u043A\u0435?\n"
-  - names:
-    - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
-    heads:
-    - {fileID: 0}
-    sentences:
-    - "\u0411\u043E\u0440\u0449 \u0447\u0438 \u041E\u043A\u0440\u043E\u0448\u043A\u0430?"
   - names:
     - "\u0421\u0442\u044E\u0430\u0440\u0442 \u041F\u0456\u0447"
     heads:
@@ -9695,6 +9681,7 @@ MonoBehaviour:
   itemsToAdd: []
   loadScene: {fileID: 0}
   turnOffTrigger: 0
+  conditionsToCheck: []
   conditionNames:
   - NoneCondition
 --- !u!61 &1701409309
@@ -10058,6 +10045,7 @@ MonoBehaviour:
   itemsToAdd: []
   loadScene: {fileID: 0}
   turnOffTrigger: 0
+  conditionsToCheck: []
   conditionNames:
   - NoneCondition
 --- !u!114 &1831856180
@@ -10536,6 +10524,7 @@ MonoBehaviour:
   itemsToAdd: []
   loadScene: {fileID: 0}
   turnOffTrigger: 0
+  conditionsToCheck: []
   conditionNames:
   - NoneCondition
 --- !u!114 &2005821939
