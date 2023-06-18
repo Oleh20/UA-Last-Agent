@@ -10,36 +10,27 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        loadLastScene();
+        LoadLastScene();
     }
 
     private void OnEnable()
     {
-        loadLastScene();
-    }
-
-
-    private void OnDisable()
-    {
-        Debug.Log("Збережено при переході!");
-        saveLastScene();
+        LoadLastScene();
     }
 
     private void OnApplicationQuit()
     {
-        Debug.Log("Збережено при виходів!");
-
-        saveLastScene();
+        SaveLastScene();
     }
 
-    private void saveLastScene()
+    private void SaveLastScene()
     {
         Scene currentScene = SceneManager.GetActiveScene();
         lastSceneName = currentScene.name;
         File.WriteAllText(saveFileName, lastSceneName);
     }
 
-    private void loadLastScene()
+    private void LoadLastScene()
     {
         gameManager = gameObject;
         DontDestroyOnLoad(gameManager);
@@ -48,10 +39,6 @@ public class GameManager : MonoBehaviour
         {
             lastSceneName = File.ReadAllText(saveFileName);
             SceneManager.LoadScene(lastSceneName);
-        }
-        else
-        {
-            File.WriteAllText(saveFileName, string.Empty);
         }
     }
 }

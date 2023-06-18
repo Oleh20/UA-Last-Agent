@@ -1,11 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class ClearingSave : MonoBehaviour
 {
-    public void data—leaning()
+    public void DataCleaning()
     {
-        PlayerPrefs.DeleteAll(); 
+        PlayerPrefs.DeleteAll();
+        if (File.Exists("lastscene.txt"))
+        {
+            File.Delete("lastscene.txt");
+        }
     }
 }
