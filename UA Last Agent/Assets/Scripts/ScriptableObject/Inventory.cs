@@ -12,6 +12,7 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
+        PlayerPrefs.SetInt("DestroyedInventory", 0);
         string json = PlayerPrefs.GetString("inventoryItems");
         if (!string.IsNullOrEmpty(json))
         {
@@ -47,9 +48,17 @@ public class Inventory : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        if (PlayerPrefs.GetInt("MissionFinished", 0) == 1)
+        if (PlayerPrefs.GetInt("MissionFinished", 0) == 1 && (PlayerPrefs.GetInt("DestroyedInventory", 0) == 0))
         {
             SaveInventory();
+        }
+    }
+    private void OnDestroy()
+    {
+        if (PlayerPrefs.GetInt("MissionFinished", 0) == 1 && (PlayerPrefs.GetInt("DestroyedInventory", 0) == 0))
+        {
+            SaveInventory();
+            PlayerPrefs.SetInt("DestroyedInventory", 1);
         }
     }
 

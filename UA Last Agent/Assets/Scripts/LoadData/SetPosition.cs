@@ -88,10 +88,6 @@ public class SetPosition : MonoBehaviour
                 PlayerPrefs.SetInt("PositionSeted", 0);
                 SavePositionPlayer(player.transform.position.x, player.transform.position.y);
             }
-            else
-            {
-                PlayerPrefs.SetInt("MissionFinished", 1);
-            }
         }
     }
    
