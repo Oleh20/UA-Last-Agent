@@ -12,8 +12,6 @@ public class DestroyGameManager : MonoBehaviour
 
         if (gameManager != null)
         {
-            Debug.Log("GameManager знайдений!");
-
             Destroy(gameManager.gameObject);
         }
     }

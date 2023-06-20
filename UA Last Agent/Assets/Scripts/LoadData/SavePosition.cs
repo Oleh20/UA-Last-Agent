@@ -13,7 +13,7 @@ public class SavePosition : MonoBehaviour
         setPosition = GameObject.Find("Fade Out").GetComponent<SetPosition>();
         if (setPosition != null)
         {
-            setPosition.savePositionPlayer(positionForSave.x, positionForSave.y);
+            setPosition.SavePositionPlayer(positionForSave.x, positionForSave.y);
         }
         setDirectionPlayer();
     }

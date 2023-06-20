@@ -40,13 +40,13 @@ public class SetPosition : MonoBehaviour
             {
                 if (PlayerPrefs.HasKey("SavedPlayerPositionX") && PlayerPrefs.HasKey("SavedPlayerPositionY"))
                 {
-                    setPositionPlayer();
+                    SetPositionPlayer();
                     PlayerPrefs.SetInt("PositionSeted", 1);
                 }
             }
             else
             {
-                setPositionPlayer();
+                SetPositionPlayer();
             }
             player.transform.position = position;
         }
@@ -56,18 +56,18 @@ public class SetPosition : MonoBehaviour
         SavePositionData();
 
     }
-    public void savePositionPlayer(float x, float y)
+    public void SavePositionPlayer(float x, float y)
     {
         PlayerPrefs.SetInt("SavedPlayerPositionX", Mathf.RoundToInt(x));
         PlayerPrefs.SetInt("SavedPlayerPositionY", Mathf.RoundToInt(y));
     }
-    public void getAndSavePositionPlayer()
+    public void GetAndSavePositionPlayer()
     {
-        PlayerPrefs.SetInt("MissionFinished", 1);
+
         PlayerPrefs.SetInt("SavedPlayerPositionX", Mathf.RoundToInt(player.transform.position.x));
         PlayerPrefs.SetInt("SavedPlayerPositionY", Mathf.RoundToInt(player.transform.position.y));
     }
-    private void setPositionPlayer()
+    private void SetPositionPlayer()
     {
         position.x = PlayerPrefs.GetInt("SavedPlayerPositionX");
         position.y = PlayerPrefs.GetInt("SavedPlayerPositionY");
@@ -77,15 +77,20 @@ public class SetPosition : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("MissionFinished"))
         {
+            PlayerPrefs.SetInt("MissionFinished", 1);
             PlayerPrefs.SetInt("PositionSeted", 0);
-            savePositionPlayer(player.transform.position.x, player.transform.position.y);
+            SavePositionPlayer(player.transform.position.x, player.transform.position.y);
         }
         else
         {
             if (PlayerPrefs.GetInt("MissionFinished", 0) == 1)
             {
                 PlayerPrefs.SetInt("PositionSeted", 0);
-                savePositionPlayer(player.transform.position.x, player.transform.position.y);
+                SavePositionPlayer(player.transform.position.x, player.transform.position.y);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("MissionFinished", 1);
             }
         }
     }
