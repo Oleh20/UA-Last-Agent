@@ -12,6 +12,7 @@ public class PlayerWeapon : MonoBehaviour
 
     private void Start()
     {
+        PlayerPrefs.SetInt("DestroyedWeaopon", 0);
         imgWeapon = GameObject.Find("Weapon");
         player = GameObject.FindGameObjectWithTag("Player");
 
@@ -88,9 +89,21 @@ public class PlayerWeapon : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        if (PlayerPrefs.GetInt("MissionFinished", 0) == 1)
+        if (PlayerPrefs.GetInt("MissionFinished", 0) == 1 && PlayerPrefs.GetInt("DestroyedWeaopon", 0) == 0)
         {
             SaveWeapon();
+        }
+    }
+    private void OnDestroy()
+    {
+        if (PlayerPrefs.GetInt("MissionFinished", 0) == 1 && PlayerPrefs.GetInt("DestroyedWeaopon", 0) == 0)
+        {
+            SaveWeapon();
+            PlayerPrefs.SetInt("DestroyedWeaopon", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("MissionFinished", 1);
         }
     }
 }

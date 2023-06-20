@@ -10,32 +10,41 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        loadLastScene();
+        LoadLastScene();
+    }
+
+    private void OnEnable()
+    {
+        LoadLastScene();
     }
 
     private void OnApplicationQuit()
     {
+        SaveLastScene();
+    }
+
+    private void SaveLastScene()
+    {
+      
         Scene currentScene = SceneManager.GetActiveScene();
         lastSceneName = currentScene.name;
         File.WriteAllText(saveFileName, lastSceneName);
     }
-    private void loadLastScene()
+
+    private void LoadLastScene()
     {
         gameManager = gameObject;
         DontDestroyOnLoad(gameManager);
-        if (!string.IsNullOrEmpty(lastSceneName))
-        {
-            SceneManager.LoadScene(lastSceneName);
-        }
+
         if (File.Exists(saveFileName))
         {
             lastSceneName = File.ReadAllText(saveFileName);
             SceneManager.LoadScene(lastSceneName);
         }
-        else
-        {
-            File.WriteAllText(saveFileName, string.Empty);
-        }
     }
 
+    private void OnDestroy()
+    {
+        SaveLastScene();
+    }
 }

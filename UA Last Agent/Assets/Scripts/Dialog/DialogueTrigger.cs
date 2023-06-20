@@ -231,7 +231,7 @@ public class DialogueTrigger : MonoBehaviour
         if (canStartMission)
         {
             PlayerPrefs.SetInt("MissionFinished", 0);
-            setPosition.getAndSavePositionPlayer();
+            setPosition.GetAndSavePositionPlayer();
             startMission.StartCurrentMision();
             inventoryUser.AddItem(startMission.itemForMission);
             canStartMission = false;
